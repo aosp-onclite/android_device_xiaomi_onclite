@@ -590,6 +590,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH)
 
+QCOM_SOONG_NAMESPACE := $(LOCAL_PATH)/platform/qcom
+
 # USB HAL
 PRODUCT_SOONG_NAMESPACES += \
     vendor/qcom/opensource/usb/etc
