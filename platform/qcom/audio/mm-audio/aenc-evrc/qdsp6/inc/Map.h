@@ -224,9 +224,10 @@ bool Map<T,T2>::eraseall()
        tempnode->next = NULL;
        if(tempnode->data)
            free(tempnode->data);
-       if(tempnode->data2)
+       if(tempnode->data2) {
            free(tempnode->data2);
            delete tempnode;
+       }
     }
     tail = head = NULL;
     return true;
