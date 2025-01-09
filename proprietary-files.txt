@@ -1371,7 +1371,7 @@ vendor/lib64/libvendor.goodix.hardware.fingerprint@1.0-service.so|9e00e73cca270e
 vendor/lib64/libvendor.goodix.hardware.fingerprint@1.0.so|3964053873ea8a2b405c9b8aa18c5037d25d3a16
 vendor/lib64/vendor.qti.hardware.fingerprint@1.0.so|81e17cf374b4090278d6cfea5c41d5c95cb264e4
 
-# GPS (Global Positioning System) - from LA.UM.10.6.2.r1-02500-89xx.0
+# GPS (Global Positioning System) - from LA.UM.10.6.2.c26-01500-89xx.0
 vendor/app/CACertService/CACertService.apk|b08fa7c9d2faba99547db99df908909dfc0c8e90
 vendor/bin/hw/android.hardware.gnss@2.1-service-qti|d458a2aadc1d00df4696d6793e550f4a9422a2c9
 vendor/bin/loc_launcher|c9a2f764201ee679c29463f405abd9625c421afc
