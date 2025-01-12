@@ -19,6 +19,10 @@ group.add_argument(
     help='Extract all files from archive',
 )
 group.add_argument(
+    '--only-name',
+    help='only extract module with device name',
+)
+group.add_argument(
     '--only-common',
     action='store_true',
     help='only extract common module',
@@ -50,7 +54,6 @@ parser.add_argument(
 parser.add_argument(
     '-s',
     '--section',
-    action='store',
     help='only apply to section name matching pattern',
 )
 parser.add_argument(
@@ -95,6 +98,7 @@ class Args:
         self.extract_all: bool = args.extract_all
         self.only_common: bool = args.only_common
         self.only_target: bool = args.only_target
+        self.only_name: str = args.only_name
         self.extract_factory: bool = args.extract_factory
         self.regenerate_makefiles: bool = args.regenerate_makefiles
         self.regenerate: bool = args.regenerate

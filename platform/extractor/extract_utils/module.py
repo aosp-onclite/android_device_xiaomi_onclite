@@ -27,6 +27,7 @@ from extract_utils.makefiles import (
     write_board_info_file,
     write_bp_header,
     write_bp_soong_namespaces,
+    write_dummy_shared_libs,
     write_mk_firmware,
     write_mk_firmware_ab_partitions,
     write_mk_firmware_file,
@@ -207,6 +208,12 @@ class ProprietaryFile:
         write_symlink_packages(
             ctx,
             self.file_list.package_symlinks,
+        )
+
+        write_dummy_shared_libs(
+            ctx,
+            packages_ctx,
+            self.file_list.dummy_shared_libs,
         )
 
         self.run_post_makefile_generation_fns(ctx, packages_ctx)
@@ -398,8 +405,8 @@ class RuntimeResourceOverlay:
 class ExtractUtilsModule:
     def __init__(
         self,
-        device,
-        vendor,
+        device: str,
+        vendor: str,
         device_rel_path: Optional[str] = None,
         blob_fixups: Optional[blob_fixups_user_type] = None,
         lib_fixups: Optional[lib_fixups_user_type] = None,
@@ -738,6 +745,9 @@ class ExtractUtilsModule:
         if FileArgs.FIX_SONAME in file.args:
             return True
 
+        if FileArgs.STRIP_DEBUG_SECTIONS in file.args:
+            return True
+
         if self.blob_fixups.get(file.dst) is not None:
             return True
 
@@ -752,6 +762,9 @@ class ExtractUtilsModule:
 
         if FileArgs.FIX_SONAME in file.args:
             blob_fixup().fix_soname().run(ctx, file, file_path)
+
+        if FileArgs.STRIP_DEBUG_SECTIONS in file.args:
+            blob_fixup().strip_debug_sections().run(ctx, file, file_path)
 
         # TODO: mark which fixups have been used and print unused ones
         # at the end

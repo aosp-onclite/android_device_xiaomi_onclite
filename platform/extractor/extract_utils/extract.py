@@ -13,9 +13,9 @@ import tempfile
 from concurrent.futures import ProcessPoolExecutor
 from contextlib import contextmanager
 from os import path
-from tarfile import TarFile
+from tarfile import TarFile, is_tarfile
 from typing import Callable, Generator, Iterable, List, Optional, Set, Union
-from zipfile import ZipFile
+from zipfile import ZipFile, is_zipfile
 
 from extract_utils.fixups import fixups_type, fixups_user_type
 from extract_utils.tools import (
@@ -435,7 +435,7 @@ def extract_sparse_raw_imgs(file_paths: List[str], output_dir: str):
 
 
 def unslot_partition(partition_slot: str):
-    return partition_slot.rsplit('_', 1)[0]
+    return re.sub(r'_[abc]$', '', partition_slot)
 
 
 def _extract_super_img(
@@ -674,12 +674,7 @@ def extract_zip(
 
 
 def extract_tar(source: str, ctx: ExtractCtx, dump_dir: str):
-    if source.endswith('gz'):
-        mode = 'r:gz'
-    else:
-        mode = 'r'
-
-    with tarfile.open(source, mode) as tar:
+    with tarfile.open(source, 'r:*') as tar:
         file_paths = tar.getnames()
         file_paths = filter_extract_file_paths(ctx, file_paths)
 
@@ -698,13 +693,9 @@ def extract_tar(source: str, ctx: ExtractCtx, dump_dir: str):
 
 
 def extract_image_file(source: str, ctx: ExtractCtx, dump_dir: str):
-    if source.endswith('.zip'):
+    if is_zipfile(source):
         extract_fn = extract_zip
-    elif (
-        source.endswith('.tar.gz')
-        or source.endswith('.tgz')
-        or source.endswith('.tar')
-    ):
+    elif is_tarfile(source):
         extract_fn = extract_tar
     else:
         raise ValueError(f'Unexpected file type at {source}')
@@ -714,6 +705,12 @@ def extract_image_file(source: str, ctx: ExtractCtx, dump_dir: str):
 
 
 def extract_image(source: str, ctx: ExtractCtx, dump_dir: str):
+    filter_already_extracted_partitions(dump_dir, ctx)
+
+    # TODO: filter already extracted firmware
+    if not ctx.extract_partitions:
+        return
+
     source_is_file = path.isfile(source)
 
     ctx.extra_partitions.append(SUPER_PARTITION_NAME)
