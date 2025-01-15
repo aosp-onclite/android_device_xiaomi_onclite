@@ -456,6 +456,11 @@ PRODUCT_PACKAGES += \
     libstagefright_enc_common.vendor \
     libstagefright_enc_common
 
+# Partitions
+PRODUCT_PACKAGES += \
+    vendor_dsp_mountpoint \
+    vendor_firmware_mnt_mountpoint
+
 # Power
 $(call soong_config_set,qtipower,mode_ext_lib,//$(LOCAL_PATH):libpowermode-ext-onc)
 
