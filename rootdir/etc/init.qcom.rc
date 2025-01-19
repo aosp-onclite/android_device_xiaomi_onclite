@@ -576,7 +576,6 @@ service qcom-post-boot /vendor/bin/init.qcom.post_boot.sh
 
 on property:sys.boot_completed=1
     start qcom-post-boot
-    swapon_all /vendor/etc/fstab.ramplus
     setprop lmkd.reinit 1
 
 service vendor.ril-daemon /vendor/bin/hw/rild

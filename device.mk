@@ -505,7 +505,6 @@ PRODUCT_PACKAGES += \
     liblzma.vendor \
     fstab.qcom \
     fstab.enableswap \
-    fstab.ramplus \
     fstab.qcom_ramdisk \
     fstab.qcom_ramdisk2 \
     init.qcom.usb.sh \

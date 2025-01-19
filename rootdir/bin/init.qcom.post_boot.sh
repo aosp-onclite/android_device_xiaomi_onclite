@@ -616,24 +616,6 @@ function disable_core_ctl() {
     fi
 }
 
-function ram_plus() {
-    # Do not start if in offline charging mode
-    if [ "$(getprop ro.boot.mode)" = "charger" ] || [ "$(getprop ro.bootmode)" = "charger" ]; then
-        return
-    fi
-
-    # Check if swap file exists
-    if [ ! -f /data/swapfile ]; then
-        dd if=/dev/zero of=/data/swapfile bs=1024 count=1048576
-    fi
-
-    chown root:root /data/swapfile
-    chmod 0600 /data/swapfile
-
-    mkswap /data/swapfile
-    swapon /data/swapfile
-}
-
 function configure_memory_parameters() {
     # Set Memory parameters.
     #
@@ -761,6 +743,7 @@ else
     fi
 
     # Memory optimization
+    # RAM Plus Tweaking
     echo 0 > /sys/module/vmpressure/parameters/allocstall_threshold
     echo 150 > /proc/sys/vm/swappiness
     echo 1 > /proc/sys/vm/watermark_scale_factor
@@ -772,7 +755,6 @@ else
 
     # Enable function
     configure_read_ahead_kb_values
-    ram_plus
 fi
 }
 
