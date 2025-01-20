@@ -10,6 +10,6 @@
     <application android:hasCode="false" />
 
     <overlay android:isStatic="true"
-             android:priority="1000"
+             android:priority="2"
              android:targetPackage="org.lineageos.aperture" />
 </manifest>
