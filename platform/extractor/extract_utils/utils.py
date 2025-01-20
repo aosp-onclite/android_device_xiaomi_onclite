@@ -12,8 +12,14 @@ import shutil
 from contextlib import contextmanager
 from enum import Enum
 from functools import lru_cache
-from subprocess import PIPE, Popen, run
-from typing import Generator, Iterable, List, Optional, Tuple
+from io import SEEK_CUR
+from mmap import mmap
+from os import path
+from subprocess import PIPE, run
+from typing import BinaryIO, Callable, Generator, Iterable, List, Optional
+from urllib.request import Request, urlopen
+
+CHUNK_SIZE = 1024 * 1024
 
 
 def import_module(module_name, module_path):
@@ -52,14 +58,23 @@ def remove_dir_contents(dir_path: str):
 
 
 def file_path_hash(file_path: str, hash_fn):
+    file_hash = hash_fn()
     with open(file_path, 'rb') as f:
-        data = f.read()
-        file_hash = hash_fn(data)
-        return file_hash.hexdigest()
+        while True:
+            data = f.read(CHUNK_SIZE)
+            if not data:
+                break
+
+            file_hash.update(data)
+    return file_hash.hexdigest()
 
 
 def file_path_sha1(file_path: str):
     return file_path_hash(file_path, hashlib.sha1)
+
+
+def file_path_sha256(file_path: str):
+    return file_path_hash(file_path, hashlib.sha256)
 
 
 class Color(str, Enum):
@@ -75,14 +90,9 @@ def color_print(*args, color: Color, **kwargs):
     print(args_str, **kwargs)
 
 
-parallel_input_cmds = List[Tuple[str, List[str]]]
-parallel_input_cmds_ret_success = List[str]
-parallel_input_cmds_ret_fail = List[Tuple[str, int, str]]
-
-
 @lru_cache(maxsize=None)
 def executable_path(name: str) -> str:
-    path = shutil.which(
+    exe_path = shutil.which(
         name,
         path=os.pathsep.join(
             [
@@ -92,36 +102,10 @@ def executable_path(name: str) -> str:
         ),
     )
 
-    if not path:
+    if not exe_path:
         raise ValueError(f'Failed to find executable path for: {name}')
 
-    return path
-
-
-def process_cmds_in_parallel(input_cmds: parallel_input_cmds, fatal=False):
-    input_procs: List[Tuple[str, Popen]] = []
-
-    for input_id, cmd in input_cmds:
-        print(f'Processing {input_id}')
-        cmd[0] = executable_path(cmd[0])
-        proc = Popen(cmd, stdout=PIPE, stderr=PIPE, text=True)
-        input_procs.append((input_id, proc))
-
-    ret_success: parallel_input_cmds_ret_success = []
-    ret_fail: parallel_input_cmds_ret_fail = []
-    for input_id, proc in input_procs:
-        _, stderr = proc.communicate()
-        assert isinstance(proc.returncode, int)
-        if proc.returncode:
-            s = f'Failed to process {input_id}: {stderr.strip()}'
-            if fatal:
-                raise ValueError(s)
-
-            ret_fail.append((input_id, proc.returncode, stderr))
-        else:
-            ret_success.append(input_id)
-
-    return ret_fail, ret_success
+    return exe_path
 
 
 def run_cmd(cmd: List[str], shell=False):
@@ -207,3 +191,116 @@ def TemporaryWorkingDirectory(dir_path: str) -> Generator[None, None, None]:
         yield
     finally:
         os.chdir(cwd)
+
+
+def scan_tree(dir_path: str):
+    for entry in os.scandir(dir_path):
+        if entry.is_dir(follow_symlinks=False):
+            yield from scan_tree(entry.path)
+        else:
+            yield entry
+
+
+def get_content_length(url: str):
+    req = Request(url, method='HEAD')
+    with urlopen(req) as response:
+        content_length = response.getheader('Content-Length')
+        assert content_length is not None
+        return int(content_length)
+
+
+def check_downloaded_path(
+    file_path: str,
+    total_size: int,
+    expected_sha256: Optional[str] = None,
+):
+    if not path.exists(file_path):
+        return 0
+
+    downloaded_size = path.getsize(file_path)
+    if downloaded_size < total_size:
+        return downloaded_size
+
+    if downloaded_size > total_size:
+        return 0
+
+    if expected_sha256 is not None:
+        downloaded_hash = file_path_sha256(file_path)
+        if downloaded_hash != expected_sha256:
+            return 0
+
+    return total_size
+
+
+def urlretrieve_resume(
+    url: str,
+    file_path: str,
+    expected_sha256: Optional[str] = None,
+    print_fn: Optional[Callable[[int, bool, bool]]] = None,
+):
+    total_size = get_content_length(url)
+
+    def print_percent(size: int, first=False, last=False):
+        percent = int(size / total_size * 100)
+        if print_fn is not None:
+            print_fn(percent, first, last)
+
+    downloaded_size = check_downloaded_path(
+        file_path,
+        total_size,
+        expected_sha256,
+    )
+
+    if downloaded_size == total_size:
+        return
+
+    print_percent(downloaded_size, first=True)
+
+    req = Request(url)
+    if downloaded_size != 0:
+        req.add_header('Range', f'bytes={downloaded_size}-')
+
+    with urlopen(req) as response:
+        mode = 'ab' if downloaded_size > 0 else 'wb'
+        with open(file_path, mode) as output_file:
+            while True:
+                chunk = response.read(CHUNK_SIZE)
+                if not chunk:
+                    print_percent(downloaded_size, last=True)
+                    break
+
+                output_file.write(chunk)
+                downloaded_size += len(chunk)
+                print_percent(downloaded_size)
+
+    downloaded_size = check_downloaded_path(
+        file_path,
+        total_size,
+        expected_sha256,
+    )
+
+    if downloaded_size == 0:
+        raise ValueError(f'Invalid file hash, expected {expected_sha256}')
+
+
+def read_mmap_chunked(
+    mm: mmap,
+    size: int,
+    offset=0,
+    chunk_size=0x100000,
+):
+    while size > 0:
+        read_size = min(chunk_size, size)
+        data = mm[offset : offset + read_size]
+        offset += read_size
+
+        if not data:
+            raise ValueError('Size bigger than stream')
+
+        yield data
+        size -= len(data)
+
+
+def write_zero(f: BinaryIO, size: int):
+    f.seek(size - 1, SEEK_CUR)
+    f.write(b'\x00')
