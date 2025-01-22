@@ -747,11 +747,6 @@ else
     echo 0 > /sys/module/vmpressure/parameters/allocstall_threshold
     echo 150 > /proc/sys/vm/swappiness
     echo 1 > /proc/sys/vm/watermark_scale_factor
-    echo 1 > /sys/module/zswap/parameters/enabled
-    echo z3fold > /sys/module/zswap/parameters/zpool
-    echo lz4 > /sys/module/zswap/parameters/compressor
-    echo 40 > /sys/module/zswap/parameters/max_pool_percent
-    echo 1 > /sys/module/zswap/parameters/same_filled_pages_enabled
 
     # Enable function
     configure_read_ahead_kb_values
