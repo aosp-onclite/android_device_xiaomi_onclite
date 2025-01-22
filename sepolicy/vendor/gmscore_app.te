@@ -3,5 +3,3 @@ set_prop(gmscore_app, camera_prop)
 
 get_prop(gmscore_app, vendor_camera_prop)
 set_prop(gmscore_app, vendor_camera_prop)
-
-get_prop(gmscore_app, system_adbd_prop)
