@@ -21,3 +21,5 @@ allow hal_camera_default sysfs:file { create open read write setattr getattr map
 allow hal_camera_default sysfs:lnk_file { create read setattr getattr relabelfrom relabelto unlink };
 
 allow hal_camera_default self:capability { setuid setgid kill sys_admin sys_nice dac_override dac_read_search sys_resource chown audit_control fowner fsetid };
+
+allow hal_camera_default hal_graphics_allocator_service:service_manager find;
