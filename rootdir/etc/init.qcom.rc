@@ -607,17 +607,17 @@ service hvdcp /system/bin/hvdcp
     user root
     disabled
 
-service vendor.msm_irqbalance /vendor/bin/msm_irqbalance -f /system/vendor/etc/msm_irqbalance.conf
+service vendor.msm_irqbalance /vendor/bin/msm_irqbalance -f /vendor/etc/msm_irqbalance.conf
     class core
     user root
-    group root
-    disabled
+    group root system
+    task_profiles ServiceCapacityLow
 
-service vendor.msm_irqbal_lb /vendor/bin/msm_irqbalance -f /system/vendor/etc/msm_irqbalance_little_big.conf
+service vendor.msm_irqbal_lb /vendor/bin/msm_irqbalance -f /vendor/etc/msm_irqbalance_little_big.conf
     class core
     user root
-    group root
-    disabled
+    group root system
+    task_profiles ServiceCapacityLow
 
 on charger
     start qcom-post-boot
