@@ -117,7 +117,7 @@
         <fqname>@1.2::ISap/slot2</fqname>
     </hal>
     <hal format="hidl">
-        <name>lineage.hardware.radio.config</name>
+        <name>android.hardware.radio.config</name>
         <transport>hwbinder</transport>
         <version>1.1</version>
         <interface>
