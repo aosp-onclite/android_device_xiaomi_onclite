@@ -1459,6 +1459,16 @@ system_ext/lib64/libmmosal.so|e9fdb48163e92b089cea0c397723a8416436c272
 vendor/lib/libmmosal.so|e23d6d1b2a035c08ffd7ac72d5241ebff37f0d14
 vendor/lib64/libmmosal.so|e9fdb48163e92b089cea0c397723a8416436c272
 
+# Media (OMX Dependency) - from LA.UM.10.6.2.c26-01500-89xx.0
+product/lib/libavenhancements.so|9372b77cbd6667a2144c55da1adf3859ae37f849
+product/lib64/libavenhancements.so|884d8585fe7554ee332e6436241a82f27a098890
+system/lib/libavenhancements.so|9372b77cbd6667a2144c55da1adf3859ae37f849
+system/lib64/libavenhancements.so|884d8585fe7554ee332e6436241a82f27a098890
+system_ext/lib/libavenhancements.so|9372b77cbd6667a2144c55da1adf3859ae37f849
+system_ext/lib64/libavenhancements.so|884d8585fe7554ee332e6436241a82f27a098890
+vendor/lib/libavenhancements.so|9372b77cbd6667a2144c55da1adf3859ae37f849
+vendor/lib64/libavenhancements.so|884d8585fe7554ee332e6436241a82f27a098890
+
 # Performance - from LA.UM.10.6.2.r1-02500-89xx.0
 system_ext/etc/perf/wlc_model.tflite|83cf4df067bc14c78f31943f32bcaf6f32419125
 system_ext/lib/libqti-perfd-client_system.so|79be2c728553c6c065a82441a9b4f7a32384f862
