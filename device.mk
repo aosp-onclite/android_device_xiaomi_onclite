@@ -298,6 +298,9 @@ PRODUCT_PACKAGES += \
     com.fingerprints.extension@1.0.vendor \
     vendor.xiaomi.hardware.fingerprintextension@1.0.vendor
 
+# FM Radio
+$(call soong_config_set_bool,libfmjni,no_fm_firmware,true)
+
 # Gatekeeper
 PRODUCT_PACKAGES += \
     android.hardware.gatekeeper@1.0.vendor
