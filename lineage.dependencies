@@ -1,7 +1,7 @@
 [
  {
    "remote"      : "github",
-   "repository"  : "onclite/android_kernel_xiaomi_onclite",
+   "repository"  : "onclite/android_kernel_xiaomi_onc",
    "branch"      : "lineage-22.1",
    "clone-depth" : "1",
    "target_path" : "kernel/xiaomi/onclite"
