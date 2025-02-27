@@ -734,7 +734,6 @@ else
     # RAM Plus Tweaking
     mkswap /dev/block/zram0
     swapon /dev/block/zram0
-    echo 150 > /proc/sys/vm/swappiness
 
     # Enable function
     configure_read_ahead_kb_values
