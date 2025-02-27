@@ -653,7 +653,7 @@ else
         disable_core_ctl
         # Enable oom_reaper for Go devices
         if [ -f /proc/sys/vm/reap_mem_on_sigkill ]; then
-            echo 1 > /proc/sys/vm/reap_mem_on_sigkill
+            echo 0 > /proc/sys/vm/reap_mem_on_sigkill
         fi
     else
 
@@ -669,7 +669,6 @@ else
         # Hence add 6 considering a worst case of 0.9 conversion to INT (0.9*6).
         # For uLMK + Memcg, this will be set as 6 since adj is zero.
         set_almk_ppr_adj=$(((set_almk_ppr_adj * 6) + 6))
-        echo $set_almk_ppr_adj > /sys/module/lowmemorykiller/parameters/adj_max_shift
 
         # Calculate vmpressure_file_min as below & set for 64 bit:
         # vmpressure_file_min = last_lmk_bin + (last_lmk_bin - last_but_one_lmk_bin)
@@ -682,25 +681,24 @@ else
             minfree_5="${minfree_4#*,}"
 
             vmpres_file_min=$((minfree_5 + (minfree_5 - rem_minfree_4)))
-            echo $vmpres_file_min > /sys/module/lowmemorykiller/parameters/vmpressure_file_min
         else
             # Set LMK series, vmpressure_file_min for 32 bit non-go targets.
             # Disable Core Control, enable KLMK for non-go 8909.
             if [ "$ProductName" == "msm8909" ]; then
                 disable_core_ctl
-                echo 1 > /sys/module/lowmemorykiller/parameters/enable_lmk
+                echo 0 > /sys/module/lowmemorykiller/parameters/enable_lmk
             fi
-        echo "15360,19200,23040,26880,34415,43737" > /sys/module/lowmemorykiller/parameters/minfree
-        echo 53059 > /sys/module/lowmemorykiller/parameters/vmpressure_file_min
+        echo "0,0,0,0,0,0" > /sys/module/lowmemorykiller/parameters/minfree
+        echo 0 > /sys/module/lowmemorykiller/parameters/vmpressure_file_min
         fi
 
         # Enable adaptive LMK for all targets &
         # use Google default LMK series for all 64-bit targets >=2GB.
-        echo 1 > /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk
+        echo 0 > /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk
 
         # Enable oom_reaper
         if [ -f /sys/module/lowmemorykiller/parameters/oom_reaper ]; then
-            echo 1 > /sys/module/lowmemorykiller/parameters/oom_reaper
+            echo 0 > /sys/module/lowmemorykiller/parameters/oom_reaper
         fi
 
         if [[ "$ProductName" != "bengal"* ]]; then
@@ -4607,7 +4605,7 @@ case "$target" in
 	echo 825000 > /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq
 
         # Enable oom_reaper
-        echo 1 > /sys/module/lowmemorykiller/parameters/oom_reaper
+        echo 0 > /sys/module/lowmemorykiller/parameters/oom_reaper
 
         # Enable bus-dcvs
         for cpubw in /sys/class/devfreq/*qcom,cpubw*
@@ -4761,9 +4759,9 @@ case "$target" in
 
         # Enable oom_reaper
 	if [ -f /sys/module/lowmemorykiller/parameters/oom_reaper ]; then
-		echo 1 > /sys/module/lowmemorykiller/parameters/oom_reaper
+		echo 0 > /sys/module/lowmemorykiller/parameters/oom_reaper
 	else
-		echo 1 > /proc/sys/vm/reap_mem_on_sigkill
+		echo 0 > /proc/sys/vm/reap_mem_on_sigkill
 	fi
 
 	# Enable bus-dcvs
@@ -4933,9 +4931,9 @@ case "$target" in
 
         # Enable oom_reaper
 	if [ -f /sys/module/lowmemorykiller/parameters/oom_reaper ]; then
-		echo 1 > /sys/module/lowmemorykiller/parameters/oom_reaper
+		echo 0 > /sys/module/lowmemorykiller/parameters/oom_reaper
 	else
-		echo 1 > /proc/sys/vm/reap_mem_on_sigkill
+		echo 0 > /proc/sys/vm/reap_mem_on_sigkill
 	fi
 
 	# Enable bus-dcvs
@@ -5602,8 +5600,8 @@ esac
 # Change adj level and min_free_kbytes setting for lowmemory killer to kick in
 case "$target" in
      "msm7627a")
-    echo 0,1,2,4,9,12 > /sys/module/lowmemorykiller/parameters/adj
-    echo 5120 > /proc/sys/vm/min_free_kbytes
+    echo "0,0,0,0,0,0" > /sys/module/lowmemorykiller/parameters/adj
+    echo 0 > /proc/sys/vm/min_free_kbytes
      ;;
 esac
 
@@ -5625,8 +5623,8 @@ fi
 case "$target" in
      "msm8660")
         start qosmgrd
-        echo 0,1,2,4,9,12 > /sys/module/lowmemorykiller/parameters/adj
-        echo 5120 > /proc/sys/vm/min_free_kbytes
+        echo "0,0,0,0,0,0" > /sys/module/lowmemorykiller/parameters/adj
+        echo 0 > /proc/sys/vm/min_free_kbytes
      ;;
 esac
 # Let kernel know our image version/variant/crm_version
