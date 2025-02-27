@@ -721,12 +721,7 @@ else
                 ;;
               *)
                 #Set PPR parameters for all other targets.
-                echo $set_almk_ppr_adj > /sys/module/process_reclaim/parameters/min_score_adj
-                echo 1 > /sys/module/process_reclaim/parameters/enable_process_reclaim
-                echo 50 > /sys/module/process_reclaim/parameters/pressure_min
-                echo 70 > /sys/module/process_reclaim/parameters/pressure_max
-                echo 30 > /sys/module/process_reclaim/parameters/swap_opt_eff
-                echo 512 > /sys/module/process_reclaim/parameters/per_swap_size
+                echo 0 > /sys/module/process_reclaim/parameters/enable_process_reclaim
                 ;;
             esac
         fi
@@ -734,12 +729,7 @@ else
 
     if [[ "$ProductName" == "bengal"* ]]; then
         #Set PPR nomap parameters for bengal targets
-        echo 1 > /sys/module/process_reclaim/parameters/enable_process_reclaim
-        echo 50 > /sys/module/process_reclaim/parameters/pressure_min
-        echo 70 > /sys/module/process_reclaim/parameters/pressure_max
-        echo 30 > /sys/module/process_reclaim/parameters/swap_opt_eff
-        echo 0 > /sys/module/process_reclaim/parameters/per_swap_size
-        echo 7680 > /sys/module/process_reclaim/parameters/tsk_nomap_swap_sz
+        echo 0 > /sys/module/process_reclaim/parameters/enable_process_reclaim
     fi
 
     # Memory optimization
