@@ -744,9 +744,9 @@ else
 
     # Memory optimization
     # RAM Plus Tweaking
-    echo 0 > /sys/module/vmpressure/parameters/allocstall_threshold
+    mkswap /dev/block/zram0
+    swapon /dev/block/zram0
     echo 150 > /proc/sys/vm/swappiness
-    echo 1 > /proc/sys/vm/watermark_scale_factor
 
     # Enable function
     configure_read_ahead_kb_values
