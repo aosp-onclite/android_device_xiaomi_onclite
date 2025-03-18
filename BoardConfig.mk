@@ -150,7 +150,6 @@ DEVICE_FRAMEWORK_MANIFEST_FILE := $(DEVICE_PATH)/framework_manifest.xml
 
 # Init
 TARGET_INIT_VENDOR_LIB := //$(DEVICE_PATH):init_onclite
-TARGET_RECOVERY_DEVICE_MODULES := init_onclite
 
 # Partitions
 AB_OTA_UPDATER := false
