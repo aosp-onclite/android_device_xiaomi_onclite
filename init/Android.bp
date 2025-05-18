@@ -5,7 +5,7 @@
 //
 
 cc_library_static {
-    name: "init_onclite",
+    name: "libinit_onclite",
     recovery_available: true,
     srcs: ["init_onclite.cpp"],
     whole_static_libs: ["libbase"],

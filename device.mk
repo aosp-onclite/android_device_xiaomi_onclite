@@ -347,6 +347,9 @@ PRODUCT_PACKAGES += \
     ims-ext-common \
     ims_ext_common.xml
 
+# Init
+$(call soong_config_set,libinit,vendor_init_lib,//$(LOCAL_PATH):libinit_onclite)
+
 # Keylayout
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/keylayout/ft5x06_ts.kl:$(TARGET_COPY_OUT_VENDOR)/usr/keylayout/ft5x06_ts.kl \
