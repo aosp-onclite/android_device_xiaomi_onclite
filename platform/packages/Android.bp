@@ -1,0 +1,22 @@
+//
+// Copyright (C) 2017-2024 The LineageOS Project
+//
+// SPDX-License-Identifier: Apache-2.0
+//
+
+cc_prebuilt_binary {
+    name: "ONCRemover",
+    overrides: [
+        "FMRadio",
+        "FM2",
+        "NfcNci",
+        "SecureElement",
+        "DeviceAsWebcam",
+        "DeviceDiagnostics",
+    ],
+    check_elf_files: false,
+    strip: {
+        none: true,
+    },
+    srcs: ["ONCRemover"],
+}
