@@ -110,7 +110,6 @@ TARGET_NEEDS_RAW10_BUFFER_FIX := true
 
 # Display
 TARGET_USES_ION := true
-TARGET_USES_GRALLOC1 := true
 TARGET_USES_HWC2 := true
 
 # Filesystem
