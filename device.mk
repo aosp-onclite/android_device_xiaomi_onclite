@@ -500,26 +500,32 @@ PRODUCT_PACKAGES += \
     libvndfwk_detect_jni.qti \
     libvndfwk_detect_jni.qti.vendor
 
-# Ramdisk
+# Rootdir
 PRODUCT_PACKAGES += \
     liblzma.vendor \
-    fstab.qcom \
-    fstab.qcom_ramdisk \
-    fstab.qcom_ramdisk2 \
     init.qcom.usb.sh \
+    init.qcom.usb.rc
+
+PRODUCT_PACKAGES += \
+    fstab.qcom \
+    fstab.qcom.ramdisk \
     init.qcom.rc \
-    init.qcom.sh \
-    init.qcom.usb.rc \
     init.recovery.qcom.rc \
     init.target.rc \
     init.xiaomi.rc \
     ueventd.qcom.rc
 
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/etc/init.recovery.qcom.rc:$(TARGET_COPY_OUT_RECOVERY)/root/init.recovery.qcom.rc \
+    $(LOCAL_PATH)/rootdir/etc/fstab.qcom:$(TARGET_COPY_OUT_RAMDISK)/fstab.qcom \
+    $(LOCAL_PATH)/rootdir/etc/fstab.qcom:$(TARGET_COPY_OUT_RECOVERY)/root/first_stage_ramdisk/fstab.qcom
+
 PRODUCT_PACKAGES += \
     init.class_main.sh \
     init.qcom.early_boot.sh \
     init.qcom.post_boot.sh \
-    init.qcom.sensors.sh
+    init.qcom.sensors.sh \
+    init.qcom.sh
 
 # RIL
 PRODUCT_COPY_FILES += \
