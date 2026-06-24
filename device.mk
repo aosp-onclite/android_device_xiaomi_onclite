@@ -141,7 +141,6 @@ PRODUCT_PACKAGES += \
     libqcomvisualizer \
     libqcomvoiceprocessing \
     libqcompostprocbundle \
-    libaacwrapper \
     libvolumelistener \
     libtinycompress \
     tinymix \
