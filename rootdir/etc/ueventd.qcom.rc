@@ -566,4 +566,4 @@ subsystem mem_buf_vm
 /sys/devices/soc0           serial_number            0000    root    root
 
 # Health HAL
-/sys/class/power_supply/battery input_suspend   0660    system  system
+/sys/class/power_supply/battery  battery_charging_enabled    0660    system  system

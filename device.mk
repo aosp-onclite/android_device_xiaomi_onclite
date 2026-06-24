@@ -320,16 +320,16 @@ PRODUCT_PACKAGES += \
     libwifi-hal-ctrl
 
 # Health HAL
-TARGET_HEALTH_CHARGING_CONTROL_CHARGING_DISABLED := 1
-TARGET_HEALTH_CHARGING_CONTROL_CHARGING_ENABLED := 0
-TARGET_HEALTH_CHARGING_CONTROL_CHARGING_PATH := /sys/class/power_supply/battery/input_suspend
-TARGET_HEALTH_CHARGING_CONTROL_SUPPORTS_BYPASS := false
-
 PRODUCT_PACKAGES += \
     android.hardware.health@2.1.vendor \
-    vendor.lineage.health-service.default \
     android.hardware.health-service.qti \
     android.hardware.health-service.qti_recovery
+
+# Lineage Health HAL
+$(call soong_config_set,lineage_health,charging_control_charging_path,/sys/class/power_supply/battery/battery_charging_enabled)
+
+PRODUCT_PACKAGES += \
+    vendor.lineage.health-service.default
 
 # HIDL
 PRODUCT_PACKAGES += \
