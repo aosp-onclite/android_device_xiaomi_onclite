@@ -69,9 +69,6 @@ else
     TARGET_KERNEL_LLVM_BINUTILS := false
 endif
 
-# ANT+
-BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
-
 # Assert
 TARGET_OTA_ASSERT_DEVICE := onclite,onc
 
