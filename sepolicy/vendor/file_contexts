@@ -9,10 +9,10 @@
 /data/fpc(/.*)?                                     u:object_r:fingerprint_data_file:s0
 /data/goodix(/.*)?                                  u:object_r:fingerprint_data_file:s0
 /data/gf_data(/.*)?                                 u:object_r:fingerprint_data_file:s0
-/data/vendor/fpc(/.*)?                              u:object_r:fingerprint_data_file:s0
-/data/vendor/gxfp(/.*)?                             u:object_r:fingerprint_data_file:s0
-/data/vendor/gf_data(/.*)?                          u:object_r:fingerprint_data_file:s0
-/data/vendor/goodix(/.*)?                           u:object_r:fingerprint_data_file:s0
+/data/vendor/fpc(/.*)?                              u:object_r:vendor_fingerprint_data_file:s0
+/data/vendor/gxfp(/.*)?                             u:object_r:vendor_fingerprint_data_file:s0
+/data/vendor/gf_data(/.*)?                          u:object_r:vendor_fingerprint_data_file:s0
+/data/vendor/goodix(/.*)?                           u:object_r:vendor_fingerprint_data_file:s0
 /data/system/fingerprint(/.*)?                      u:object_r:fingerprint_data_file:s0
 
 # HALs
