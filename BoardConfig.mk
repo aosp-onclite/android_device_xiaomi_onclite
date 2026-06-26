@@ -173,7 +173,6 @@ BOARD_ROOT_EXTRA_SYMLINKS := \
 TARGET_PER_MGR_ENABLED := true
 
 # Power
-TARGET_POWERHAL_MODE_EXT := $(DEVICE_PATH)/platform/power/power-mode.cpp
 TARGET_USES_INTERACTION_BOOST := true
 
 # Properties
