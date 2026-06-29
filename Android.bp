@@ -27,3 +27,17 @@ install_symlink {
     installed_location: "firmware/wlan/prima/WCNSS_wlan_dictionary.dat",
     symlink_target: "/mnt/vendor/persist/WCNSS_wlan_dictionary.dat",
 }
+
+install_symlink {
+    name: "vulkan.adreno_symlink",
+    vendor: true,
+    installed_location: "lib/hw/vulkan.adreno.so",
+    symlink_target: "/vendor/lib/hw/vulkan.msm8953.so",
+}
+
+install_symlink {
+    name: "vulkan.adreno_64_symlink",
+    vendor: true,
+    installed_location: "lib64/hw/vulkan.adreno.so",
+    symlink_target: "/vendor/lib64/hw/vulkan.msm8953.so",
+}

@@ -238,6 +238,8 @@ PRODUCT_PACKAGES += \
     hwcomposer.msm8953 \
     libdisplayconfig \
     libvulkan \
+    vulkan.adreno_symlink \
+    vulkan.adreno_64_symlink \
     libqdMetaData \
     libqdMetaData.system \
     libtinyxml \
