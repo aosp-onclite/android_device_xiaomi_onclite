@@ -1,0 +1,67 @@
+cc_library_shared {
+    name: "libqcomvisualizer",
+    relative_install_path: "soundfx",
+    vendor: true,
+
+    srcs: [
+        "offload_visualizer.c",
+    ],
+
+    cflags: [
+        "-O2",
+        "-fvisibility=hidden",
+        "-Werror",
+        "-Wno-unused-variable",
+        "-Wno-sign-compare",
+        "-Wno-unused-parameter",
+        "-Wno-unused-label",
+        "-Wno-gnu-designator",
+        "-Wno-typedef-redefinition",
+        "-Wno-shorten-64-to-32",
+        "-Wno-tautological-compare",
+        "-Wno-unused-function",
+        "-Wno-unused-local-typedef",
+        "-Wno-unused-value",
+    ] + select(soong_config_variable("ANDROID", "target_board_platform"), {
+        "sdm660": ["-DCAPTURE_DEVICE=7"],
+        "sdm845": ["-DCAPTURE_DEVICE=7"],
+        "msm8998": ["-DCAPTURE_DEVICE=7"],
+        "apq8098_latv": ["-DCAPTURE_DEVICE=7"],
+        "sdm710": ["-DCAPTURE_DEVICE=7"],
+        "qcs605": ["-DCAPTURE_DEVICE=7"],
+        "msmnile": ["-DCAPTURE_DEVICE=7"],
+        "msmsteppe": ["-DCAPTURE_DEVICE=7"],
+        "trinket": ["-DCAPTURE_DEVICE=7"],
+        "kona": ["-DCAPTURE_DEVICE=7"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_gcov"), {
+        "true": [
+            "--coverage",
+            "-fprofile-arcs",
+            "-ftest-coverage",
+        ],
+        default: [],
+    }),
+
+    include_dirs: [
+        "external/tinyalsa/include",
+        "system/media/audio_effects/include",
+    ],
+
+    header_libs: [
+        "libsystem_headers",
+        "libhardware_headers",
+    ],
+
+    shared_libs: [
+        "libcutils",
+        "libdl",
+        "liblog",
+        "libtinyalsa",
+    ],
+
+    static_libs: select(soong_config_variable("qtiaudio", "feature_gcov"), {
+        "true": ["libprofile_rt"],
+        default: [],
+    }),
+}
