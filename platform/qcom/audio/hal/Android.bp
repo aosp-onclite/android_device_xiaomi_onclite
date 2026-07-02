@@ -1,0 +1,733 @@
+soong_config_module_type {
+    name: "target_board_platform_cc_library_shared",
+    module_type: "cc_library_shared",
+    config_namespace: "ANDROID",
+    value_variables: ["target_board_platform"],
+    properties: [
+        "name",
+    ],
+}
+
+target_board_platform_cc_library_shared {
+    name: "audio.primary.default",
+    soong_config_variables: {
+        target_board_platform: {
+            name: "audio.primary.%s",
+            conditions_default: {
+                name: "audio.primary.default",
+            },
+        },
+    },
+    relative_install_path: "hw",
+    vendor: true,
+    owner: "qti",
+
+    srcs: [
+        "audio_hw.c",
+        "voice.c",
+        "platform_info.c",
+        "acdb.c",
+        "audio_extn/audio_extn.c",
+        "audio_extn/utils.c",
+    ] + select(soong_config_variable("ANDROID", "target_board_platform"), {
+        "msm8974": [
+            "msm8974/platform.c",
+            "msm8974/hw_info.c",
+        ],
+        "msm8226": [
+            "msm8974/platform.c",
+            "msm8974/hw_info.c",
+        ],
+        "msm8610": [
+            "msm8974/platform.c",
+            "msm8974/hw_info.c",
+        ],
+        "apq8084": [
+            "msm8974/platform.c",
+            "msm8974/hw_info.c",
+        ],
+        "msm8994": [
+            "msm8974/platform.c",
+            "msm8974/hw_info.c",
+        ],
+        "msm8992": [
+            "msm8974/platform.c",
+            "msm8974/hw_info.c",
+        ],
+        "msm8996": [
+            "msm8974/platform.c",
+            "msm8974/hw_info.c",
+        ],
+        "msm8998": [
+            "msm8974/platform.c",
+            "msm8974/hw_info.c",
+        ],
+        "apq8098_latv": [
+            "msm8974/platform.c",
+            "msm8974/hw_info.c",
+        ],
+        "sdm845": [
+            "msm8974/platform.c",
+            "msm8974/hw_info.c",
+        ],
+        "sdm710": [
+            "msm8974/platform.c",
+            "msm8974/hw_info.c",
+        ],
+        "qcs605": [
+            "msm8974/platform.c",
+            "msm8974/hw_info.c",
+        ],
+        "msmnile": [
+            "msm8974/platform.c",
+            "msm8974/hw_info.c",
+        ],
+        "msmsteppe": [
+            "msm8974/platform.c",
+            "msm8974/hw_info.c",
+        ],
+        "trinket": [
+            "msm8974/platform.c",
+            "msm8974/hw_info.c",
+        ],
+        "kona": [
+            "msm8974/platform.c",
+            "msm8974/hw_info.c",
+        ],
+        "msm8916": [
+            "msm8916/platform.c",
+            "msm8916/hw_info.c",
+        ],
+        "msm8909": [
+            "msm8916/platform.c",
+            "msm8916/hw_info.c",
+        ],
+        "msm8952": [
+            "msm8916/platform.c",
+            "msm8916/hw_info.c",
+        ],
+        "msm8937": [
+            "msm8916/platform.c",
+            "msm8916/hw_info.c",
+        ],
+        "thorium": [
+            "msm8916/platform.c",
+            "msm8916/hw_info.c",
+        ],
+        "msm8953": [
+            "msm8916/platform.c",
+            "msm8916/hw_info.c",
+        ],
+        "msmgold": [
+            "msm8916/platform.c",
+            "msm8916/hw_info.c",
+        ],
+        "sdm660": [
+            "msm8916/platform.c",
+            "msm8916/hw_info.c",
+        ],
+        default: [
+            "msm8916/platform.c",
+            "msm8916/hw_info.c",
+        ],
+    }) + select(soong_config_variable("qtiaudio", "feature_hdmi_edid"), {
+        "true": ["edid.c"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_fm_power_opt"), {
+        "true": ["audio_extn/fm.c"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_usb_tunnel_audio"), {
+        "true": ["audio_extn/usb.c"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_hfp"), {
+        "true": ["audio_extn/hfp.c"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_ssr"), {
+        "true": ["audio_extn/ssr.c"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_multi_voice_sessions"), {
+        "true": ["voice_extn/voice_extn.c"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_compress_voip"), {
+        "true": ["voice_extn/compress_voip.c"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_spkr_protection"), {
+        "true": ["audio_extn/spkr_protection.c"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_compress_capture"), {
+        "true": ["audio_extn/compress_capture.c"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_dts_eagle"), {
+        "true": ["audio_extn/dts_eagle.c"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_dolby_ddp"), {
+        "true": ["audio_extn/dolby.c"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_ds1_dolby_dap"), {
+        "true": ["audio_extn/dolby.c"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_ds2_dolby_dap"), {
+        "true": ["audio_extn/dolby.c"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_dev_arbi"), {
+        "true": ["audio_extn/dev_arbi.c"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_hdmi_passthrough"), {
+        "true": ["audio_extn/passthru.c"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_keep_alive"), {
+        "true": ["audio_extn/keep_alive.c"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_source_tracking"), {
+        "true": ["audio_extn/source_track.c"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_split_a2dp"), {
+        "true": ["audio_extn/a2dp.c"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_ip_hdlr"), {
+        "true": ["audio_extn/ip_hdlr_intf.c"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_qaf"), {
+        "true": ["audio_extn/qaf.c"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_compress_input"), {
+        "true": ["audio_extn/compress_in.c"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "board_supports_qahw"), {
+        "true": ["audio_hw_extn_api.c"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_bt_hal"), {
+        "true": ["audio_extn/bt_hal.c"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_qap"), {
+        "true": ["audio_extn/qap.c"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_ext_amplifier"), {
+        "false": [],
+        default: ["audio_extn/audio_amplifier.c"],
+    }) + select(soong_config_variable("qtiaudio", "feature_listen"), {
+        "true": ["audio_extn/listen.c"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_sound_trigger"), {
+        "true": ["audio_extn/soundtrigger.c"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_pm_support"), {
+        "true": ["audio_extn/pm.c"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_gef_support"), {
+        "true": ["audio_extn/gef.c"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_adsp_hdlr"), {
+        "true": ["audio_extn/adsp_hdlr.c"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_snd_monitor"), {
+        "true": ["audio_extn/sndmonitor.c"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_ext_hw_plugin"), {
+        "true": ["audio_extn/ext_hw_plugin.c"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_battery_listener"), {
+        "true": ["audio_extn/battery_listener.cpp"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_ffv"), {
+        "true": ["audio_extn/ffv.c"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_elliptic_ultrasound"), {
+        "true": ["audio_extn/ultrasound.c"],
+        default: [],
+    }),
+
+    cflags: [
+        "-Wall",
+        "-Werror",
+        "-Wno-macro-redefined",
+        "-D_GNU_SOURCE",
+        "-DUSE_VENDOR_EXTN",
+        "-Wno-unused-variable",
+        "-Wno-unused-but-set-variable",
+        "-Wno-format",
+        "-Wno-sign-compare",
+        "-Wno-unused-parameter",
+        "-Wno-unused-label",
+        "-Wno-gnu-designator",
+        "-Wno-typedef-redefinition",
+        "-Wno-shorten-64-to-32",
+        "-Wno-tautological-compare",
+        "-Wno-unused-function",
+        "-Wno-unused-local-typedef",
+        "-Wno-tautological-pointer-compare",
+        "-Wno-missing-field-initializers",
+    ] + select(soong_config_variable("ANDROID", "target_board_platform"), {
+        "msm8610": [
+            "-DPLATFORM_MSM8610",
+            "-DHW_VARIANTS_ENABLED",
+            "-DSOUND_TRIGGER_PLATFORM_NAME=msm8610",
+        ],
+        "msm8226": [
+            "-DPLATFORM_MSM8x26",
+            "-DHW_VARIANTS_ENABLED",
+            "-DSOUND_TRIGGER_PLATFORM_NAME=msm8226",
+        ],
+        "apq8084": [
+            "-DPLATFORM_APQ8084",
+            "-DHW_VARIANTS_ENABLED",
+            "-DSOUND_TRIGGER_PLATFORM_NAME=apq8084",
+        ],
+        "msm8994": [
+            "-DPLATFORM_MSM8994",
+            "-DHW_VARIANTS_ENABLED",
+            "-DSOUND_TRIGGER_PLATFORM_NAME=msm8994",
+        ],
+        "msm8992": [
+            "-DPLATFORM_MSM8994",
+            "-DHW_VARIANTS_ENABLED",
+            "-DSOUND_TRIGGER_PLATFORM_NAME=msm8992",
+        ],
+        "msm8996": [
+            "-DPLATFORM_MSM8996",
+            "-DHW_VARIANTS_ENABLED",
+            "-DSOUND_TRIGGER_PLATFORM_NAME=msm8996",
+        ],
+        "msm8998": [
+            "-DPLATFORM_MSM8998",
+            "-DHW_VARIANTS_ENABLED",
+            "-DSOUND_TRIGGER_PLATFORM_NAME=msm8998",
+        ],
+        "apq8098_latv": [
+            "-DPLATFORM_MSM8998",
+            "-DHW_VARIANTS_ENABLED",
+            "-DSOUND_TRIGGER_PLATFORM_NAME=apq8098_latv",
+        ],
+        "sdm845": [
+            "-DPLATFORM_SDM845",
+            "-DHW_VARIANTS_ENABLED",
+            "-DSOUND_TRIGGER_PLATFORM_NAME=sdm845",
+        ],
+        "sdm710": [
+            "-DPLATFORM_SDM710",
+            "-DHW_VARIANTS_ENABLED",
+            "-DSOUND_TRIGGER_PLATFORM_NAME=sdm710",
+        ],
+        "qcs605": [
+            "-DPLATFORM_QCS605",
+            "-DHW_VARIANTS_ENABLED",
+            "-DSOUND_TRIGGER_PLATFORM_NAME=qcs605",
+        ],
+        "msmnile": [
+            "-DPLATFORM_MSMNILE",
+            "-DHW_VARIANTS_ENABLED",
+            "-DSOUND_TRIGGER_PLATFORM_NAME=msmnile",
+        ],
+        "msmsteppe": [
+            "-DPLATFORM_MSMSTEPPE",
+            "-DHW_VARIANTS_ENABLED",
+            "-DSOUND_TRIGGER_PLATFORM_NAME=msmsteppe",
+        ],
+        "trinket": [
+            "-DPLATFORM_TRINKET",
+            "-DHW_VARIANTS_ENABLED",
+            "-DSOUND_TRIGGER_PLATFORM_NAME=trinket",
+        ],
+        "kona": [
+            "-DPLATFORM_KONA",
+            "-DHW_VARIANTS_ENABLED",
+            "-DSOUND_TRIGGER_PLATFORM_NAME=kona",
+        ],
+        "msm8974": [
+            "-DHW_VARIANTS_ENABLED",
+            "-DSOUND_TRIGGER_PLATFORM_NAME=msm8974",
+        ],
+        "msm8916": [
+            "-DPLATFORM_MSM8916",
+            "-DHW_VARIANTS_ENABLED",
+            "-DSOUND_TRIGGER_PLATFORM_NAME=msm8916",
+        ],
+        "msm8909": [
+            "-DPLATFORM_MSM8916",
+            "-DPLATFORM_MSM8909",
+            "-DHW_VARIANTS_ENABLED",
+            "-DSOUND_TRIGGER_PLATFORM_NAME=msm8909",
+        ],
+        "msm8952": [
+            "-DPLATFORM_MSM8916",
+            "-DHW_VARIANTS_ENABLED",
+            "-DSOUND_TRIGGER_PLATFORM_NAME=msm8952",
+        ],
+        "msm8937": [
+            "-DPLATFORM_MSM8916",
+            "-DHW_VARIANTS_ENABLED",
+            "-DSOUND_TRIGGER_PLATFORM_NAME=msm8937",
+        ],
+        "thorium": [
+            "-DPLATFORM_MSM8916",
+            "-DHW_VARIANTS_ENABLED",
+            "-DSOUND_TRIGGER_PLATFORM_NAME=thorium",
+        ],
+        "msm8953": [
+            "-DPLATFORM_MSM8916",
+            "-DHW_VARIANTS_ENABLED",
+            "-DSOUND_TRIGGER_PLATFORM_NAME=msm8953",
+        ],
+        "msmgold": [
+            "-DPLATFORM_MSM8916",
+            "-DHW_VARIANTS_ENABLED",
+            "-DSOUND_TRIGGER_PLATFORM_NAME=msmgold",
+        ],
+        "sdm660": [
+            "-DPLATFORM_MSM8916",
+            "-DPLATFORM_MSMFALCON",
+            "-DHW_VARIANTS_ENABLED",
+            "-DSOUND_TRIGGER_PLATFORM_NAME=sdm660",
+        ],
+        default: [
+            "-DPLATFORM_MSM8916",
+            "-DHW_VARIANTS_ENABLED",
+            "-DSOUND_TRIGGER_PLATFORM_NAME=default",
+        ],
+    }) + select(soong_config_variable("qtiaudio", "target_board_auto"), {
+        "true": ["-DPLATFORM_AUTO"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_hdmi_edid"), {
+        "true": ["-DHDMI_EDID"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_use_ll_as_primary_output"), {
+        "true": ["-DUSE_LL_AS_PRIMARY_OUTPUT"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_pcm_offload"), {
+        "true": ["-DPCM_OFFLOAD_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_anc_headset"), {
+        "true": ["-DANC_HEADSET_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_hifi_audio"), {
+        "true": ["-DHIFI_AUDIO_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_ras"), {
+        "true": ["-DRAS_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_vbat_monitor"), {
+        "true": ["-DVBAT_MONITOR_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_fluence"), {
+        "true": ["-DFLUENCE_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_proxy_device"), {
+        "true": ["-DAFE_PROXY_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_kpi_optimize"), {
+        "true": ["-DKPI_OPTIMIZE_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_fm_power_opt"), {
+        "true": ["-DFM_POWER_OPT"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_usb_tunnel_audio"), {
+        "true": ["-DUSB_HEADSET_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_hfp"), {
+        "true": ["-DHFP_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_customstereo"), {
+        "true": ["-DCUSTOM_STEREO_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_ssr"), {
+        "true": ["-DSSR_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_multi_voice_sessions"), {
+        "true": ["-DMULTI_VOICE_SESSION_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_incall_music"), {
+        "true": ["-DINCALL_MUSIC_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_compress_voip"), {
+        "true": ["-DCOMPRESS_VOIP_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_extn_formats"), {
+        "true": ["-DAUDIO_EXTN_FORMATS_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_spkr_protection"), {
+        "true": ["-DSPKR_PROT_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_compress_capture"), {
+        "true": ["-DCOMPRESS_CAPTURE_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_dts_eagle"), {
+        "true": ["-DDTS_EAGLE"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_dolby_ddp"), {
+        "true": ["-DDS1_DOLBY_DDP_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_ds1_dolby_dap"), {
+        "true": ["-DDS1_DOLBY_DAP_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_flac_offload"), {
+        "true": [
+            "-DFLAC_OFFLOAD_ENABLED",
+            "-DCOMPRESS_METADATA_NEEDED",
+        ],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_extn_flac_decoder"), {
+        "true": [
+            "-DFLAC_OFFLOAD_ENABLED",
+            "-DCOMPRESS_METADATA_NEEDED",
+        ],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_vorbis_offload"), {
+        "true": [
+            "-DVORBIS_OFFLOAD_ENABLED",
+            "-DCOMPRESS_METADATA_NEEDED",
+        ],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_wma_offload"), {
+        "true": [
+            "-DWMA_OFFLOAD_ENABLED",
+            "-DCOMPRESS_METADATA_NEEDED",
+        ],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_alac_offload"), {
+        "true": [
+            "-DALAC_OFFLOAD_ENABLED",
+            "-DCOMPRESS_METADATA_NEEDED",
+        ],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_ape_offload"), {
+        "true": [
+            "-DAPE_OFFLOAD_ENABLED",
+            "-DCOMPRESS_METADATA_NEEDED",
+        ],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_pcm_offload_24"), {
+        "true": ["-DPCM_OFFLOAD_ENABLED_24"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_aac_adts_offload"), {
+        "true": ["-DAAC_ADTS_OFFLOAD_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_dev_arbi"), {
+        "true": ["-DDEV_ARBI_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_record_play_concurrency"), {
+        "true": ["-DRECORD_PLAY_CONCURRENCY"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_acdb_license"), {
+        "true": ["-DDOLBY_ACDB_LICENSE"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_ds2_dolby_dap"), {
+        "true": [
+            "-DDS2_DOLBY_DAP_ENABLED",
+            "-DDS1_DOLBY_DDP_ENABLED",
+        ],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_hdmi_passthrough"), {
+        "true": ["-DHDMI_PASSTHROUGH_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_keep_alive"), {
+        "true": ["-DKEEP_ALIVE_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_source_tracking"), {
+        "true": ["-DSOURCE_TRACKING_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_split_a2dp"), {
+        "true": ["-DSPLIT_A2DP_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_ip_hdlr"), {
+        "true": ["-DAUDIO_EXTN_IP_HDLR_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_qaf"), {
+        "true": ["-DQAF_EXTN_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_compress_input"), {
+        "true": ["-DCOMPRESS_INPUT_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "board_supports_qahw"), {
+        "true": ["-DAUDIO_HW_EXTN_API_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_bt_hal"), {
+        "true": ["-DAUDIO_EXTN_BT_HAL_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_qap"), {
+        "true": [
+            "-DQAP_EXTN_ENABLED",
+            "-Wno-tautological-pointer-compare",
+        ],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_ext_amplifier"), {
+        "false": [],
+        default: ["-DEXT_AMPLIFIER_ENABLED"],
+    }) + select(soong_config_variable("qtiaudio", "feature_listen"), {
+        "true": ["-DAUDIO_LISTEN_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_sound_trigger"), {
+        "true": [
+            "-DSOUND_TRIGGER_ENABLED",
+        ],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_ext_hdmi"), {
+        "true": ["-DAUDIO_EXTERNAL_HDMI_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_auxpcm_bt"), {
+        "true": ["-DAUXPCM_BT_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_pm_support"), {
+        "true": ["-DPM_SUPPORT_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_display_port"), {
+        "true": ["-DDISPLAY_PORT_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_gef_support"), {
+        "true": ["-DAUDIO_GENERIC_EFFECT_FRAMEWORK_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_adsp_hdlr"), {
+        "true": ["-DAUDIO_EXTN_ADSP_HDLR_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_dynamic_log"), {
+        "true": ["-DDYNAMIC_LOG_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_dynamic_ecns"), {
+        "true": ["-DDYNAMIC_ECNS_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_instance_id"), {
+        "true": ["-DINSTANCE_ID_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_usb_burst_mode"), {
+        "true": ["-DUSB_BURST_MODE_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_battery_listener"), {
+        "true": ["-DBATTERY_LISTENER_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_keep_alive_arm_ffv"), {
+        "true": ["-DRUN_KEEP_ALIVE_IN_ARM_FFV"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_ffv"), {
+        "true": ["-DFFV_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_elliptic_ultrasound"), {
+        "true": ["-DELLIPTIC_ULTRASOUND_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_extended_compress_format"), {
+        "true": ["-DENABLE_EXTENDED_COMPRESS_FORMAT"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_a2dp_decoders"), {
+        "true": ["-DAPTX_DECODER_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_snd_monitor"), {
+        "true": ["-DSND_MONITOR_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_ext_hw_plugin"), {
+        "true": ["-DEXT_HW_PLUGIN_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_gcov"), {
+        "true": [
+            "--coverage",
+            "-fprofile-arcs",
+            "-ftest-coverage",
+        ],
+        default: [],
+    }),
+
+    cppflags: select(soong_config_variable("qtiaudio", "feature_gcov"), {
+        "true": [
+            "--coverage",
+            "-fprofile-arcs",
+            "-ftest-coverage",
+        ],
+        default: [],
+    }),
+
+    local_include_dirs: [
+        "audio_extn",
+        "voice_extn",
+    ] + select(soong_config_variable("ANDROID", "target_board_platform"), {
+        "msm8974": ["msm8974"],
+        "msm8226": ["msm8974"],
+        "msm8610": ["msm8974"],
+        "apq8084": ["msm8974"],
+        "msm8994": ["msm8974"],
+        "msm8992": ["msm8974"],
+        "msm8996": ["msm8974"],
+        "msm8998": ["msm8974"],
+        "apq8098_latv": ["msm8974"],
+        "sdm845": ["msm8974"],
+        "sdm710": ["msm8974"],
+        "qcs605": ["msm8974"],
+        "msmnile": ["msm8974"],
+        "msmsteppe": ["msm8974"],
+        "trinket": ["msm8974"],
+        "kona": ["msm8974"],
+        "msm8916": ["msm8916"],
+        "msm8909": ["msm8916"],
+        "msm8952": ["msm8916"],
+        "msm8937": ["msm8916"],
+        "thorium": ["msm8916"],
+        "msm8953": ["msm8916"],
+        "msmgold": ["msm8916"],
+        "sdm660": ["msm8916"],
+        default: ["msm8916"],
+    }),
+
+    include_dirs: [
+        "external/expat/lib",
+        "external/tinyalsa/include",
+        "external/tinycompress/include",
+        "hardware/libhardware/include",
+        "system/media/audio_effects/include",
+        "system/media/audio_route/include",
+        "system/media/audio_utils/include",
+    ],
+
+    header_libs: [
+        "libhardware_headers",
+        "qti_kernel_headers",
+    ] + select(soong_config_variable("qtiaudio", "feature_dlkm"), {
+        "true": ["audio_kernel_headers"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_qap"), {
+        "true": ["audio_qaf_headers"],
+        default: [],
+    }),
+
+    shared_libs: [
+        "android.hardware.power-V1-ndk",
+        "android.hardware.power@1.2",
+        "libaudioroute",
+        "libaudioutils",
+        "libbase",
+        "libbinder_ndk",
+        "libcutils",
+        "libdl",
+        "libexpat",
+        "libhardware",
+        "libhidlbase",
+        "liblog",
+        "libprocessgroup",
+        "libtinyalsa",
+        "libtinycompress",
+        "libutils",
+    ] + select(soong_config_variable("qtiaudio", "feature_hdmi_passthrough"), {
+        "true": ["libaudioparsers"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_qap"), {
+        "true": [
+            "libqap_wrapper",
+        ],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_pm_support"), {
+        "true": ["libperipheral_client"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_dynamic_log"), {
+        "true": ["libaudio_log_utils"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_battery_listener"), {
+        "true": [
+            "android.hardware.health@1.0",
+            "android.hardware.health@2.0",
+        ],
+        default: [],
+    }),
+
+    static_libs: select(soong_config_variable("qtiaudio", "feature_battery_listener"), {
+        "true": ["libhealthhalutils"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_gcov"), {
+        "true": ["libprofile_rt"],
+        default: [],
+    }),
+}

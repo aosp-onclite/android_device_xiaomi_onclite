@@ -9,8 +9,6 @@ include $(MY_LOCAL_PATH)/legacy/Android.mk
 else
 ifneq ($(filter mpq8092,$(TARGET_BOARD_PLATFORM)),)
 include $(MY_LOCAL_PATH)/hal_mpq/Android.mk
-else
-include $(MY_LOCAL_PATH)/hal/Android.mk
 endif
 include $(MY_LOCAL_PATH)/voice_processing/Android.mk
 include $(MY_LOCAL_PATH)/visualizer/Android.mk
