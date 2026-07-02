@@ -26,6 +26,8 @@ PRODUCT_USE_DYNAMIC_PARTITION_SIZE := false
 
 PRODUCT_BUILD_SUPER_PARTITION := false
 
+TARGET_DISABLE_FASTBOOTD := true
+
 $(call inherit-product, vendor/xiaomi/onclite/onclite-vendor.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/non_ab_device.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
