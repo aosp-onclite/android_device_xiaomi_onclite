@@ -13,6 +13,9 @@ cc_library_shared {
         "-DLOG_TAG=\"DRMUTILS\"",
         "-Wall",
         "-Werror",
+        "-Wno-unused-variable",
+        "-Wno-unused-but-set-variable",
+        "-Wno-format",
         "-fno-operator-names",
     ],
 

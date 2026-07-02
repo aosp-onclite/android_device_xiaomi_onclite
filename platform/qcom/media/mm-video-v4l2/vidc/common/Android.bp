@@ -10,6 +10,9 @@ cc_library_static {
 
     cflags: [
         "-Werror",
+        "-Wno-unused-variable",
+        "-Wno-unused-but-set-variable",
+        "-Wno-format",
         "-D_ANDROID_",
         "-D_ANDROID_ICS_",
     ] + select(soong_config_variable("qtidisplay", "target_kernel_version"), {

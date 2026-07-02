@@ -8,6 +8,9 @@ cc_library_shared {
 
     cflags: [
         "-Werror",
+        "-Wno-unused-variable",
+        "-Wno-unused-but-set-variable",
+        "-Wno-format",
     ],
 
     header_libs: [

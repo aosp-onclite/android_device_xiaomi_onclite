@@ -13,6 +13,9 @@ cc_library_shared {
 
     cflags: [
         "-Werror",
+        "-Wno-unused-variable",
+        "-Wno-unused-but-set-variable",
+        "-Wno-format",
         "-Wno-parentheses",
         "-D_ANDROID_",
         "-D_ANDROID_ICS_",
