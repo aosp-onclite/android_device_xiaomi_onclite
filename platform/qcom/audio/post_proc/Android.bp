@@ -1,0 +1,146 @@
+cc_library_shared {
+    name: "libqcompostprocbundle",
+    relative_install_path: "soundfx",
+    vendor: true,
+    owner: "qti",
+
+    srcs: [
+        "bundle.c",
+        "equalizer.c",
+        "bass_boost.c",
+        "virtualizer.c",
+        "reverb.c",
+        "effect_api.c",
+        "effect_util.c",
+    ] + select(soong_config_variable("qtiaudio", "feature_audiosphere"), {
+        "true": ["asphere.c"],
+        default: [],
+    }),
+
+    cflags: [
+        "-O2",
+        "-fvisibility=hidden",
+        "-Werror",
+        "-Wno-unused-variable",
+        "-Wno-sign-compare",
+        "-Wno-unused-parameter",
+        "-Wno-unused-label",
+        "-Wno-gnu-designator",
+        "-Wno-typedef-redefinition",
+        "-Wno-shorten-64-to-32",
+        "-Wno-tautological-compare",
+        "-Wno-unused-function",
+        "-Wno-unused-local-typedef",
+        "-Wno-format",
+        "-Wno-unused-value",
+    ] + select(soong_config_variable("qtiaudio", "feature_disabled_dts_eagle"), {
+        "true": [],
+        default: ["-DDTS_EAGLE"],
+    }) + select(soong_config_variable("qtiaudio", "feature_proxy_device"), {
+        "true": ["-DAFE_PROXY_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_audiosphere"), {
+        "true": ["-DAUDIOSPHERE_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_instance_id"), {
+        "true": ["-DINSTANCE_ID_ENABLED"],
+        default: [],
+    }) + select(soong_config_variable("qtiaudio", "feature_gcov"), {
+        "true": [
+            "--coverage",
+            "-fprofile-arcs",
+            "-ftest-coverage",
+        ],
+        default: [],
+    }),
+
+    include_dirs: [
+        "external/tinyalsa/include",
+        "system/media/audio_effects/include",
+    ],
+
+    header_libs: [
+        "libhardware_headers",
+        "libsystem_headers",
+        "libutils_headers",
+        "qti_kernel_headers",
+    ] + select(soong_config_variable("qtiaudio", "feature_dlkm"), {
+        "true": ["audio_kernel_headers"],
+        default: [],
+    }),
+
+    shared_libs: [
+        "libcutils",
+        "libdl",
+        "liblog",
+        "libtinyalsa",
+    ],
+
+    static_libs: select(soong_config_variable("qtiaudio", "feature_gcov"), {
+        "true": ["libprofile_rt"],
+        default: [],
+    }),
+}
+
+cc_library_shared {
+    name: "libvolumelistener",
+    relative_install_path: "soundfx",
+    vendor: true,
+    owner: "qti",
+
+    srcs: [
+        "volume_listener.c",
+    ],
+
+    cflags: [
+        "-O2",
+        "-fvisibility=hidden",
+        "-Werror",
+        "-Wno-unused-variable",
+        "-Wno-sign-compare",
+        "-Wno-unused-parameter",
+        "-Wno-unused-label",
+        "-Wno-gnu-designator",
+        "-Wno-typedef-redefinition",
+        "-Wno-shorten-64-to-32",
+        "-Wno-tautological-compare",
+        "-Wno-unused-function",
+        "-Wno-unused-local-typedef",
+        "-Wno-format",
+    ] + select(soong_config_variable("ANDROID", "target_board_platform"), {
+        any @ flag_val: [
+            "-DLIB_AUDIO_HAL=/vendor/lib/hw/audio.primary." + flag_val + ".so",
+            "-DLIB64_AUDIO_HAL=/vendor/lib64/hw/audio.primary." + flag_val + ".so",
+        ],
+        default: [
+            "-DLIB_AUDIO_HAL=/vendor/lib/hw/audio.primary.qcom.so",
+            "-DLIB64_AUDIO_HAL=/vendor/lib64/hw/audio.primary.qcom.so",
+        ],
+    }),
+
+    include_dirs: [
+        "external/tinyalsa/include",
+        "external/tinycompress/include",
+        "device/xiaomi/onclite/platform/qcom/audio/hal",
+        "device/xiaomi/onclite/platform/qcom/audio/hal/audio_extn",
+        "system/media/audio_effects/include",
+        "system/media/audio_route/include",
+        "system/media/audio_utils/include",
+    ],
+
+    header_libs: [
+        "libhardware_headers",
+        "libsystem_headers",
+        "libutils_headers",
+        "qti_kernel_headers",
+    ] + select(soong_config_variable("qtiaudio", "feature_dlkm"), {
+        "true": ["audio_kernel_headers"],
+        default: [],
+    }),
+
+    shared_libs: [
+        "libcutils",
+        "libdl",
+        "liblog",
+    ],
+}

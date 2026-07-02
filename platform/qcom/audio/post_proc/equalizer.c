@@ -438,7 +438,7 @@ int equalizer_set_parameter(effect_context_t *context, effect_param_t *p,
             if (vsize < (2 + NUM_EQ_BANDS) * sizeof(int16_t)) {
                 android_errorWriteLog(0x534e4554, "37563371");
                 ALOGE("\tERROR EQ_PARAM_PROPERTIES valueSize %d < %d",
-                                  vsize, (2 + NUM_EQ_BANDS) * sizeof(int16_t));
+                                  vsize, (int)((2 + NUM_EQ_BANDS) * sizeof(int16_t)));
                 p->status = -EINVAL;
                 break;
             }
