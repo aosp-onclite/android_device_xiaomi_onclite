@@ -1,0 +1,16 @@
+cc_library_shared {
+    name: "libdisplayconfig",
+
+    defaults: ["display_defaults"],
+    header_libs: ["display_headers"],
+    srcs: ["DisplayConfig.cpp"],
+    shared_libs: [
+        "libhidlbase",
+        "libutils",
+        "vendor.display.config@1.0",
+    ],
+    cflags: [
+        "-Wno-sign-conversion",
+    ],
+    export_include_dirs: ["."],
+}

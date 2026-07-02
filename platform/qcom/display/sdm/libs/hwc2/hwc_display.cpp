@@ -39,16 +39,7 @@
 
 #include "hwc_display.h"
 #include "hwc_debugger.h"
-#include "blit_engine_c2d.h"
 #include "hwc_tonemapper.h"
-
-#ifndef USE_GRALLOC1
-#include <gr.h>
-#endif
-
-#ifdef QTI_BSP
-#include <hardware/display_defs.h>
-#endif
 
 #define __CLASS__ "HWCDisplay"
 
@@ -89,11 +80,8 @@ HWC2::Error HWCColorMode::DeInit() {
 uint32_t HWCColorMode::GetColorModeCount() {
   uint32_t count = UINT32(color_mode_transform_map_.size());
   DLOGI("Supported color mode count = %d", count);
-#ifdef EXCLUDE_DISPLAY_PP
-  return count;
-#else
+
   return std::max(1U, count);
-#endif
 }
 
 HWC2::Error HWCColorMode::GetColorModes(uint32_t *out_num_modes,
@@ -202,10 +190,8 @@ void HWCColorMode::PopulateColorModes() {
   // SDM returns modes which is string combination of mode + transform.
   DisplayError error = display_intf_->GetColorModeCount(&color_mode_count);
   if (error != kErrorNone || (color_mode_count == 0)) {
-#ifndef EXCLUDE_DISPLAY_PP
     DLOGW("GetColorModeCount failed, use native color mode");
     PopulateTransform(HAL_COLOR_MODE_NATIVE, "native", "identity");
-#endif
     return;
   }
 
@@ -513,11 +499,7 @@ void HWCDisplay::BuildLayerStack() {
     const private_handle_t *handle =
         reinterpret_cast<const private_handle_t *>(layer->input_buffer.buffer_id);
     if (handle) {
-#ifdef USE_GRALLOC1
       if (handle->buffer_type == BUFFER_TYPE_VIDEO) {
-#else
-      if (handle->bufferType == BUFFER_TYPE_VIDEO) {
-#endif
         layer_stack_.flags.video_present = true;
       }
       // TZ Protected Buffer - L1
@@ -1636,13 +1618,8 @@ int HWCDisplay::SetFrameBufferResolution(uint32_t x_pixels, uint32_t y_pixels) {
     flags |= private_handle_t::PRIV_FLAGS_UBWC_ALIGNED;
   }
 
-#ifdef USE_GRALLOC1
   buffer_allocator_->GetAlignedWidthAndHeight(INT(x_pixels), INT(y_pixels), format, usage,
                                               &aligned_width, &aligned_height);
-#else
-  AdrenoMemInfo::getInstance().getAlignedWidthAndHeight(INT(x_pixels), INT(y_pixels), format,
-                                                        INT(usage), aligned_width, aligned_height);
-#endif
 
   // TODO(user): How does the dirty region get set on the client target? File bug on Google
   client_target_layer->composition = kCompositionGPUTarget;
