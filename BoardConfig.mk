@@ -144,6 +144,7 @@ DEVICE_MATRIX_FILE   := hardware/qcom-caf/common/compatibility_matrix.xml
 DEVICE_FRAMEWORK_MANIFEST_FILE := $(DEVICE_PATH)/framework_manifest.xml
 
 # Partitions
+TARGET_OTA_ALLOW_NON_AB := true
 AB_OTA_UPDATER := false
 
 BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
