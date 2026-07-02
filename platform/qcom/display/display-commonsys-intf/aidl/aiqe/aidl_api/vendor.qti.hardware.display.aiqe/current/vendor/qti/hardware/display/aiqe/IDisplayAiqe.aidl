@@ -1,6 +1,5 @@
 /*
- * Changes from Qualcomm Innovation Center, Inc. are provided under the following license:
- * Copyright (c) 2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Copyright (c) 2024-2025 Qualcomm Innovation Center, Inc. All rights reserved.
  * SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 ///////////////////////////////////////////////////////////////////////////////
@@ -30,4 +29,5 @@ interface IDisplayAiqe {
   void setABCState(in int dispId, in int enable);
   void setABCReconfig(in int dispId);
   void setABCMode(in int dispId, in String mode_name);
+  void setAIScalerMode(in int dispId, in int mode_id);
 }

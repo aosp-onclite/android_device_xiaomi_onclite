@@ -27,8 +27,8 @@
  * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 /*
- * Changes from Qualcomm Innovation Center are provided under the following license:
- * Copyright (c) 2023-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+ * Changes from Qualcomm Technologies, Inc. are provided under the following license:
+ * Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
  * SPDX-License-Identifier: BSD-3-Clause-Clear
  */
 
@@ -57,6 +57,7 @@ import vendor.qti.hardware.display.config.TUIEventType;
 import vendor.qti.hardware.display.config.CameraSmoothOp;
 import vendor.qti.hardware.display.config.CacV2Config;
 import vendor.qti.hardware.display.config.CacV2ConfigExt;
+import vendor.qti.hardware.display.config.ICwbControlConst;
 
 @VintfStability
 /**
@@ -658,4 +659,56 @@ interface IDisplayConfig {
      * @return error is NONE upon success
      */
     void setContentFps(in String name, in int fps);
+
+    /**
+     * @brief Set the output buffer to be filled with the contents of the next
+     * composition performed for this display. Client can specify cropping
+     * rectangle for the partial concurrent writeback.
+     * Buffer must be ready for writeback before this API is called.
+     * If hardware protected content is displayed in next composition cycle,
+     * CWB output buffer will be returned as failure in callback and without
+     * any change in buffer.
+     *
+     * @param callback registered callback for IDisplayConfig
+     * @param dispId display id where concurrent writeback shall be captured
+     * @param roiRect cropping rectangle which shall be applied on blended output
+     * @param downscaleRect its width and height shall be applied on blended output to downscale
+     * @param cwbControlFlag whether to capture LM/DSPP/Demura output or control refresh strategy
+     * @param buffer buffer where concurrent writeback output shall be written
+     *
+     * @return error is NONE upon success
+     */
+    void setCWBOutputBufferV2(in IDisplayConfigCallback callback, in int dispId, in Rect roiRect,
+                              in Rect downscaleRect, in int cwbControlFlag, in NativeHandle buffer);
+
+    /*
+     * call function to start tunnelling
+     * @return error as NONE if vendor.display.enable_tunnelling is set to true
+     * @return relevant error code otherwise
+    */
+    int tunnellingInit();
+
+    /*
+    *  deinit tunnelling
+    * @return error as NONE always
+    */
+    int tunnellingDeinit();
+
+    /*
+    * dequeue the buffer
+    *
+    * @return the release_fence_handle corresponding to the input buffer handle
+    * @return relevant error code if ion_fd is not present
+    */
+    int dequeueTunnelledBuffer(in NativeHandle buffer_handle,
+                               out NativeHandle release_fence_handle);
+
+    /*
+    * validate display and show the content of the buffer on screen
+    *
+    * @return error as NONE on success
+    * @return relevant error code otherwise
+    */
+    int queueTunnelledBuffer(in NativeHandle buffer_handle,
+                             in NativeHandle acquire_fence_handle);
 }
