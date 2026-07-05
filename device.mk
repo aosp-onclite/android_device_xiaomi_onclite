@@ -121,6 +121,26 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.freeform_window_management.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/permissions/android.software.freeform_window_management.xml
 
 # Audio
+$(call soong_config_set,qtiaudio,feature_anc_headset,true)
+$(call soong_config_set,qtiaudio,feature_alac_offload,true)
+$(call soong_config_set,qtiaudio,feature_ape_offload,true)
+$(call soong_config_set,qtiaudio,feature_compress_voip,true)
+$(call soong_config_set,qtiaudio,feature_customstereo,true)
+$(call soong_config_set,qtiaudio,feature_extn_formats,true)
+$(call soong_config_set,qtiaudio,feature_fm_power_opt,true)
+$(call soong_config_set,qtiaudio,feature_flac_offload,true)
+$(call soong_config_set,qtiaudio,feature_fluence,true)
+$(call soong_config_set,qtiaudio,feature_hfp,true)
+$(call soong_config_set,qtiaudio,feature_kpi_optimize,true)
+$(call soong_config_set,qtiaudio,feature_multi_voice_sessions,true)
+$(call soong_config_set,qtiaudio,feature_pcm_offload,true)
+$(call soong_config_set,qtiaudio,feature_pcm_offload_24,true)
+$(call soong_config_set,qtiaudio,feature_proxy_device,true)
+$(call soong_config_set,qtiaudio,feature_source_tracking,true)
+$(call soong_config_set,qtiaudio,feature_ext_amplifier,false)
+$(call soong_config_set,qtiaudio,feature_use_ll_as_primary_output,true)
+$(call soong_config_set,qtiaudio,feature_sound_trigger,true)
+
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.audio.output.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.audio.output.xml \
     frameworks/native/data/etc/android.hardware.audio.low_latency.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.audio.low_latency.xml \
