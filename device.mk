@@ -32,6 +32,7 @@ $(call inherit-product, vendor/xiaomi/onclite/onclite-vendor.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/non_ab_device.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 $(call inherit-product, hardware/qcom-caf/common/common.mk)
+$(call inherit-product-if-exists, hardware/qcom-caf/onclite/common.mk)
 
 PRODUCT_SOONG_NAMESPACES += hardware/xiaomi
 PRODUCT_SOONG_NAMESPACES += bootable/deprecated-ota
