@@ -272,6 +272,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/SVIConfig.xml:$(TARGET_COPY_OUT_VENDOR)/etc/SVIConfig.xml
 
+PRODUCT_PRODUCT_PROPERTIES += is_expressive_design_enabled=true
+
 # LiveDisplay
 $(call soong_config_set_bool,livedisplay_sdm,enable_dm,false)
 
