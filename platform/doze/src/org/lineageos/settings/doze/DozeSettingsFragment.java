@@ -19,12 +19,11 @@ import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.SwitchPreferenceCompat;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceCategory;
-import android.widget.CompoundButton;
 
 import com.android.settingslib.widget.MainSwitchPreference;
 
 public class DozeSettingsFragment extends PreferenceFragmentCompat implements
-        Preference.OnPreferenceChangeListener, CompoundButton.OnCheckedChangeListener {
+        Preference.OnPreferenceChangeListener {
 
     private MainSwitchPreference mSwitchBar;
 
@@ -48,7 +47,7 @@ public class DozeSettingsFragment extends PreferenceFragmentCompat implements
         boolean dozeEnabled = DozeUtils.isDozeEnabled(getActivity());
 
         mSwitchBar = (MainSwitchPreference) findPreference(DozeUtils.DOZE_ENABLE);
-        mSwitchBar.addOnSwitchChangeListener(this);
+        mSwitchBar.setOnPreferenceChangeListener(this);
         mSwitchBar.setChecked(dozeEnabled);
 
         mWakeOnGesturePreference = (SwitchPreferenceCompat) findPreference(DozeUtils.WAKE_ON_GESTURE_KEY);
@@ -78,22 +77,21 @@ public class DozeSettingsFragment extends PreferenceFragmentCompat implements
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
+        if (DozeUtils.DOZE_ENABLE.equals(preference.getKey())) {
+            boolean isChecked = (Boolean) newValue;
+            DozeUtils.enableDoze(getActivity(), isChecked);
+
+            mSwitchBar.setChecked(isChecked);
+
+            mWakeOnGesturePreference.setEnabled(isChecked);
+            mPickUpPreference.setEnabled(isChecked);
+            mHandwavePreference.setEnabled(isChecked);
+            mPocketPreference.setEnabled(isChecked);
+        }
+
         mHandler.post(() -> DozeUtils.checkDozeService(getActivity()));
 
         return true;
-    }
-
-    @Override
-    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        DozeUtils.enableDoze(getActivity(), isChecked);
-        DozeUtils.checkDozeService(getActivity());
-
-        mSwitchBar.setChecked(isChecked);
-
-        mWakeOnGesturePreference.setEnabled(isChecked);
-        mPickUpPreference.setEnabled(isChecked);
-        mHandwavePreference.setEnabled(isChecked);
-        mPocketPreference.setEnabled(isChecked);
     }
 
     private void showHelp() {
