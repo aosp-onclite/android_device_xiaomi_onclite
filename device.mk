@@ -422,7 +422,7 @@ PRODUCT_PACKAGES += \
 
 # Lights
 PRODUCT_PACKAGES += \
-    android.hardware.light-service.lineage
+    android.hardware.light-service.onc
 
 # Media
 PRODUCT_COPY_FILES += \
