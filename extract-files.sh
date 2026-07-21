@@ -72,6 +72,10 @@ function blob_fixup() {
         [ "$2" = "" ] && return 0
         "${PATCHELF}" --replace-needed "libstdc++.so" "libstdc++_vendor.so" "${2}"
         ;;
+    system_ext/lib64/lib-imscamera.so | system_ext/lib64/lib-imsvideocodec.so)
+        [ "$2" = "" ] && return 0
+        grep -q "libgui_shim.so" "${2}" || "${PATCHELF}" --add-needed "libgui_shim.so" "${2}"
+        ;;
         *)
             return 1
             ;;
