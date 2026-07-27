@@ -34,7 +34,6 @@ persist.vendor.viwifi_support=1
 persist.vendor.volte_support=1
 persist.vendor.vt.supported=1
 ro.apk_verity.mode=2
-ro.config.vc_call_vol_steps=7
 ro.frp.pst=/dev/block/by-name/config
 ro.hardware.egl=adreno
 ro.hardware.keystore_desede=true
