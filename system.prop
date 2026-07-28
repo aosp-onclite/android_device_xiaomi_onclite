@@ -199,9 +199,6 @@ vendor.vidc.enc.disable.pq=true
 # Additional buffers shared between Camera and Video
 vidc.enc.dcvs.extra-buff-count=2
 
-# system prop for disable replacing current recovery
-persist.vendor.recovery_update=false
-
 # system property to accelerate Progressive Download using STA
 persist.mm.sta.enable=0
 
