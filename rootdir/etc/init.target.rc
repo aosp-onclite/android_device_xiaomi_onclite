@@ -96,7 +96,7 @@ service vendor.qseecomd /vendor/bin/qseecomd
    group root
    task_profiles ServiceCapacityLow
 
-service thermal-engine /system/vendor/bin/thermal-engine
+service vendor.thermal-engine /system/vendor/bin/thermal-engine
    class main
    user root
    socket thermal-send-client stream 0666 system system
@@ -151,11 +151,13 @@ on charger
     write /sys/devices/system/cpu/cpu2/online 0
     write /sys/devices/system/cpu/cpu3/online 0
     write /sys/module/lpm_levels/parameters/sleep_disabled 0
-    setprop sys.usb.configfs 1
-    setprop persist.sys.usb.config mass_storage
     wait /dev/block/bootdevice/by-name/system
     mount ext4 /dev/block/bootdevice/by-name/system /system ro barrier=1
+    wait /dev/block/bootdevice/by-name/persist
+    mount ext4 /dev/block/bootdevice/by-name/persist /mnt/vendor/persist nosuid nodev barrier=1
     start vendor.hvdcp_opti
+    start vendor.power_off_alarm
+    start vendor.thermal-engine
 
 on boot
     # Update cpusets on boot and we want better load balancing

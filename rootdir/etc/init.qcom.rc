@@ -171,10 +171,14 @@ on boot
     mkdir /mnt/vendor/persist/bluetooth 0770 bluetooth bluetooth
     mkdir /persist/misc 0770 system system
     mkdir /persist/alarm 0770 system system
+    chmod 0666 /persist/alarm/data
     mkdir /mnt/vendor/persist/time 0770 system system
     mkdir /mnt/vendor/persist/secnvm 0770 system system
     mkdir /mnt/vendor/persist/iar_db 0770 system system
     mkdir /mnt/vendor/spunvm 0770 system system
+    mkdir /mnt/vendor/persist/alarm 0770 system system
+    mkdir /mnt/vendor/persist/time 0770 system system
+
     restorecon_recursive /mnt/vendor/persist
 
     #Create NETMGR daemon socket area
@@ -512,11 +516,13 @@ service vendor.qrtr-ns /vendor/bin/qrtr-ns -f
     user vendor_qrtr
     group vendor_qrtr
     capabilities NET_BIND_SERVICE
+    task_profiles ServiceCapacityLow
 
-service irsc_util /vendor/bin/irsc_util "/vendor/etc/sec_config"
+service vendor.irsc_util /vendor/bin/irsc_util "/vendor/etc/sec_config"
     class core
     user root
     oneshot
+    task_profiles ServiceCapacityLow
 
 on property:vendor.bluetooth.hciattach=true
     setprop vendor.bluetooth.status on
@@ -566,7 +572,7 @@ service qcom-sh /vendor/bin/init.qcom.sh
 on property:ro.vendor.ril.mbn_copy_completed=1
     write /data/vendor/radio/copy_complete 1
 
-service qcom-post-boot /vendor/bin/init.qcom.post_boot.sh
+service vendor.qcom-post-boot /vendor/bin/init.qcom.post_boot.sh
     class late_start
     user root
     group root system wakelock graphics
@@ -574,7 +580,7 @@ service qcom-post-boot /vendor/bin/init.qcom.post_boot.sh
     oneshot
 
 on property:sys.boot_completed=1
-    start qcom-post-boot
+    start vendor.qcom-post-boot
 
 service hvdcp /system/bin/hvdcp
     class core
@@ -594,8 +600,7 @@ service vendor.msm_irqbal_lb /vendor/bin/msm_irqbalance -f /vendor/etc/msm_irqba
     task_profiles ServiceCapacityLow
 
 on charger
-    start qcom-post-boot
-    start vendor.power_off_alarm
+    start vendor.qcom-post-boot
 
 service time_daemon /vendor/bin/time_daemon
     class main
@@ -604,9 +609,9 @@ service time_daemon /vendor/bin/time_daemon
     capabilities SYS_TIME
 
 service vendor.power_off_alarm /vendor/bin/power_off_alarm
-    class charger
-    user root
-    group root system
+    class core
+    group system
+    disabled
     oneshot
 
 service vendor.audio-hal /vendor/bin/hw/android.hardware.audio.service
