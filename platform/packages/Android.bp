@@ -6,6 +6,7 @@
 
 cc_prebuilt_binary {
     name: "ONCRemover",
+    stem: "system_pkg_override_stub",
     overrides: [
         "FMRadio",
         "FM2",
@@ -18,5 +19,5 @@ cc_prebuilt_binary {
     strip: {
         none: true,
     },
-    srcs: ["ONCRemover"],
+    srcs: ["system_pkg_override_stub"],
 }
