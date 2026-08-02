@@ -1513,7 +1513,7 @@ vendor/bin/pm-service|79d55a5a545dd69b70d659a57bf9e4829ce7896b
 vendor/lib/libperipheral_client.so;DISABLE_DEPS|7ace2f7c8c7ebd986db6c7796de7237e584e658b
 vendor/lib64/libperipheral_client.so;DISABLE_DEPS|9bfd41e276e16b8f7c6808f3d87531fc5be4cdd5
 
-# Secure MSM - from FP3-user 11 8901.4.A.0010 gms-f74c58a8 release-keys
+# Secure MSM - from FP3-REL-6.A.040.4-gms-c8a26ca8-user
 system_ext/lib64/vendor.qti.hardware.tui_comm@1.0.so|9d36beb8fa964584aae64a109543a4997417d70a
 vendor/bin/hw/android.hardware.drm-service.widevine|cdbd2b11c53df4c9151317d9990914d6fe6e526c
 vendor/bin/hw/android.hardware.gatekeeper@1.0-service-qti|2e33e885b92e413440511049025497945d6b8484
@@ -1527,7 +1527,7 @@ vendor/etc/init/android.hardware.keymaster@4.0-service-qti.rc|c8999fb1bccbef81e6
 vendor/etc/init/vendor.qti.hardware.qteeconnector@1.0-service.rc|c966350ee67d3a7c73ca7184e3725264025d16f5
 vendor/etc/init/vendor.qti.hardware.tui_comm@1.0-service-qti.rc|2cfc563d7e1579374f001c94588fae7835a12ffc
 vendor/etc/vintf/manifest/manifest_android.hardware.drm-service.widevine.xml|7e13b6628572b1cdd76351b744e2805d4e6f2dd9
-vendor/lib/libwvaidl.so|fc52380f301e65c8d615897e894b89b3c3e39149
+vendor/lib/libwvaidl.so|a0eb98ca84b5fc234a94c92890a3ab937f6ac785
 vendor/lib64/hw/android.hardware.gatekeeper@1.0-impl-qti.so|71b72d91eb94321a3b35d3e2b03a33e7b50d3b13
 vendor/lib64/hw/gatekeeper.msm8953.so|d760257a98254b9e87ae258e267b1a45a0ed7ecb
 vendor/lib64/hw/keystore.msm8953.so|83a48633d4530c45e36cfb9cd7f3d63a8a5bc122
