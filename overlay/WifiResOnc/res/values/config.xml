@@ -49,4 +49,16 @@
 
     <!-- True if the firmware supports Wi-Fi link probing -->
     <bool name="config_wifi_link_probing_supported">true</bool>
+
+    <!-- Wifi driver supports 5GHz band for softap when chip support 5GHz -->
+    <bool translatable="false" name="config_wifiSoftap5ghzSupported">false</bool>
+
+    <!-- Wifi driver supports 6GHz band for softap when chip support 6GHz -->
+    <bool translatable="false" name="config_wifiSoftap6ghzSupported">false</bool>
+
+    <!-- Wifi driver supports 60GHz band for softap when chip support 60GHz -->
+    <bool translatable="false" name="config_wifiSoftap60ghzSupported">false</bool>
+
+    <!-- Wifi driver supports 2.4GHz band for softap when chip support 24GHz -->
+    <bool translatable="false" name="config_wifiSoftap24ghzSupported">true</bool>
 </resources>
