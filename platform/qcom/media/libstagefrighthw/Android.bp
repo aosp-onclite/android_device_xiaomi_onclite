@@ -17,6 +17,7 @@
 cc_library_shared {
     name: "libstagefrighthw",
     vendor: true,
+    enabled: false,
 
     srcs: [
         "QComOMXPlugin.cpp"

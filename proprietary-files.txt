@@ -1452,6 +1452,33 @@ vendor/lib64/libOmxWmaDec.so|32e1b9c72d0b0a8b74978e1687b701e18030d68a
 vendor/lib64/libgpustats.so|a899ae72983277442cdacf8f43271986c91ce710
 vendor/lib64/libmm-color-convertor.so|d3539eb5a6a986f8ba81bac9cbf7b34872b12f1a
 
+# Media (Hardware) - from LA.UM.8.6.r1-04000-89xx.0
+system/lib/libaacwrapper.so|34a7d210bd3f7c1441a79252f5f31e701c6e10f8
+vendor/lib/libOmxAacEnc.so|328de11252b10c79b4892d7d13fd3df64b857675
+vendor/lib/libOmxAmrEnc.so|68bf78b89a75f937e9ce6b1af849a5f73223fdd1
+vendor/lib/libOmxCore.so|da5d18628a2280fc3b9fdaa2821d3751aa85a2ba
+vendor/lib/libOmxEvrcEnc.so|515118aa3dba016620a428110b89b47392055dc7
+vendor/lib/libOmxG711Enc.so|890f0b2cd9ee69f74002089975d6da242d2431a4
+vendor/lib/libOmxQcelp13Enc.so|65ab5e77591861bb2921da5f48d19785b140cc5b
+vendor/lib/libOmxVdec.so|00d275337a2f2aabfa877ca8004a368fc2c2c7ce
+vendor/lib/libOmxVenc.so|ceac0a71ad8bd71432949d1c8d3b82a87295b7d1
+vendor/lib/libc2dcolorconvert.so|93fae96b4a747950a20e758e0e2ee374ccf55b99
+vendor/lib/libhypv_intercept.so|c39411b08d078fd68aa660bec46cee026b718cda
+vendor/lib/libmm-omxcore.so|2ffc8d4fe68ca2d0b38f7d2fcb4140d7a3001bef
+vendor/lib/libstagefrighthw.so|ac00d2e618561ef2d99b8ddb9539fda23b88a766
+vendor/lib64/libOmxAacEnc.so|479eabaf881e22d501929eee8eae65de87370996
+vendor/lib64/libOmxAmrEnc.so|be5e848f6f5efcb7d65d3f5e3ebd98ccc609363e
+vendor/lib64/libOmxCore.so|ee66e2b3bdea45d147d9b0bdd6600e947f8fc04d
+vendor/lib64/libOmxEvrcEnc.so|f1cd6908a3b3961bec8815269c3febdb259dbd24
+vendor/lib64/libOmxG711Enc.so|1cf43614ede8b264c9b4641a9b87f3d6863cb15b
+vendor/lib64/libOmxQcelp13Enc.so|54db2264927e63b615e9f2d4489ae3038d72519a
+vendor/lib64/libOmxVdec.so|2f18bd3a6923bd6e3a29d37cdbe87d738d74d4f1
+vendor/lib64/libOmxVenc.so|ef06711c2a6b3e695427e83c2013a773dbc799c6
+vendor/lib64/libc2dcolorconvert.so|ab0c1842c81e75632eb56d6fa7aa2da65b9e5204
+vendor/lib64/libhypv_intercept.so|1b93c26a3cfcba9facfde2f3af80b9cb21289d48
+vendor/lib64/libmm-omxcore.so|d851a71ee537c11f7777cf08f9343906c29bbd6d
+vendor/lib64/libstagefrighthw.so|e21133c4afec7e03dde07ae251dbf6ae72f54c5f
+
 # Media (GPS Dependency) - from LA.UM.10.6.2.c26-01500-89xx.0
 system_ext/lib/libmmosal.so|e23d6d1b2a035c08ffd7ac72d5241ebff37f0d14
 system_ext/lib64/libmmosal.so|e9fdb48163e92b089cea0c397723a8416436c272

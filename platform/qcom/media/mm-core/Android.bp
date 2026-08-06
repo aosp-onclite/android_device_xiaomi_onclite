@@ -1,6 +1,7 @@
 cc_library_shared {
     name: "libOmxCore",
     vendor: true,
+    enabled: false,
 
     srcs: [
         "src/common/omx_core_cmp.cpp",
@@ -40,6 +41,7 @@ cc_library_shared {
 cc_library_shared {
     name: "libmm-omxcore",
     vendor: true,
+    enabled: false,
 
     srcs: [
         "src/common/omx_core_cmp.cpp",

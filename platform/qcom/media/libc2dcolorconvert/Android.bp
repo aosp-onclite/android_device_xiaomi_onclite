@@ -1,6 +1,7 @@
 cc_library_shared {
     name: "libc2dcolorconvert",
     vendor: true,
+    enabled: false,
 
     srcs: [
         "C2DColorConverter.cpp",

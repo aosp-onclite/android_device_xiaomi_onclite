@@ -1,6 +1,7 @@
 cc_library_shared {
     name: "libOmxVenc",
     vendor: true,
+    enabled: false,
 
     srcs: [
         "src/omx_video_base.cpp",
