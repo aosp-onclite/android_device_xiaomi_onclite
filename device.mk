@@ -640,10 +640,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     vendor/qcom/opensource/vibrator/excluded-input-devices.xml:$(TARGET_COPY_OUT_VENDOR)/etc/excluded-input-devices.xml
 
-PRODUCT_PROPERTY_OVERRIDES += \
-    vendor.qcom.vibrator.led.mv_min=1504 \
-    vendor.qcom.vibrator.led.mv_max=3544
-
 # vndservicemanager
 PRODUCT_PACKAGES += \
     vndservicemanager
