@@ -274,6 +274,11 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_PRODUCT_PROPERTIES += is_expressive_design_enabled=true
 
+PRODUCT_PRODUCT_PROPERTIES += \
+    ro.sf.blurs_are_expensive=0 \
+    ro.surface_flinger.supports_background_blur=0 \
+    persist.sys.sf.disable_blurs=1
+
 # LiveDisplay
 $(call soong_config_set_bool,livedisplay_sdm,enable_dm,false)
 
