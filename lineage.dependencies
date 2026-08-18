@@ -1,6 +1,13 @@
 [
  {
    "remote"      : "github",
+   "repository"  : "onclite/proton-clang",
+   "branch"      : "20210123",
+   "clone-depth" : "1",
+   "target_path" : "prebuilts/clang/kernel/linux-x86/clang-proton"
+ },
+ {
+   "remote"      : "github",
    "repository"  : "LineageOS/android_hardware_xiaomi",
    "branch"      : "lineage-23.2",
    "clone-depth" : "1",
