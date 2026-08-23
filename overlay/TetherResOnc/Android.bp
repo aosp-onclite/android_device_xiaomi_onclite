@@ -7,6 +7,5 @@
 runtime_resource_overlay {
     name: "TetherResOnc",
     theme: "TetherResOnc",
-    sdk_version: "current",
     product_specific: true
 }

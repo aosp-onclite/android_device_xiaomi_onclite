@@ -6,6 +6,5 @@
 
 runtime_resource_overlay {
     name: "ApertureResOnc",
-    sdk_version: "current",
     product_specific: true,
 }
