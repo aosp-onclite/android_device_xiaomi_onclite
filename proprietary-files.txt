@@ -899,6 +899,7 @@ system_ext/framework/dpmapi.jar|2e2fbe2257a697b96a644c774136da0554430d3f
 system_ext/framework/embmslibrary.jar|b5fe26c1cea597af8a1751332d187f2f574816c1
 system_ext/framework/qcrilhook.jar|782bbe7c3199aee88f8745e083b339fa84c3c5d5
 system_ext/framework/qti-telephony-common.jar|08aa14ba807bd9ba2587a762c41ad01c9c07d142
+system_ext/framework/vendor.qti.hardware.data.iwlan-V1.0-java.jar|b776f0042dbb7fb5f6619dbc5b97c42248b4e4f2
 system_ext/framework/vendor.qti.hardware.data.latency-V1.0-java.jar|68068cdbd044dca2872284ebcd2909eb74c3a804
 system_ext/framework/vendor.qti.ims.callcapability-V1.0-java.jar|3cdfb07c3f33bf6ea1cfac52bd125f959995872a
 system_ext/framework/vendor.qti.ims.callinfo-V1.0-java.jar|3993d8d98969d0eaa7b5676128e85718588677d0
@@ -910,6 +911,7 @@ system_ext/framework/vendor.qti.ims.rcsconfig-V2.0-java.jar|dc0be9b3621fdaa8eaf8
 system_ext/framework/vendor.qti.ims.rcsconfig-V2.1-java.jar|af9770ca830ad0228890254ae0d735993e0af22c
 system_ext/framework/vendor.qti.latency-V2.0-java.jar|239a5cf7f057d3e93c0fe7cb33ee6be088ad2aac
 system_ext/framework/vendor.qti.latency-V2.1-java.jar|b292cd4c9b1140ebc3cb6873106389483214eee2
+system_ext/lib/vendor.qti.hardware.data.iwlan@1.0.so;DISABLE_DEPS|23fe5104025e8d0dc9b710067b1c1860bdf616ee
 system_ext/lib64/com.qualcomm.qti.dpm.api@1.0.so|b992e1f565f7b8b814eac0c88517543e6d0de603
 system_ext/lib64/com.qualcomm.qti.imscmservice@1.0.so|128788c0d72a038f7ffb83fa54d3dd424044f58f
 system_ext/lib64/com.qualcomm.qti.imscmservice@2.0.so|513cdac21c72a069039e02c2b8cb6bc15dc1bf67
@@ -932,6 +934,7 @@ system_ext/lib64/libdpmtcm.so|dff3d3dbacd18ed55b5758a174f5016ef9e7a896
 system_ext/lib64/libimscamera_jni.so;SYMLINK=system_ext/priv-app/ims/lib/arm64/libimscamera_jni.so|114876ec8ba85965a69694a7edc0e555fe099061
 system_ext/lib64/libimsmedia_jni.so;SYMLINK=system_ext/priv-app/ims/lib/arm64/libimsmedia_jni.so|b90664b4ce069358f36801da5ceac10baf4ebcc6
 system_ext/lib64/vendor.qti.diaghal@1.0.so|dcc31fc969e846ea58ec91a37c1f1e77b49e731e
+system_ext/lib64/vendor.qti.hardware.data.iwlan@1.0.so;DISABLE_DEPS|8f6ee7e2269f68ff7e7d77518740e424f136c172
 system_ext/lib64/vendor.qti.hardware.data.latency@1.0.so|61ce2333d9265774ab9b8f6badab23dd54fe5cc5
 system_ext/lib64/vendor.qti.hardware.radio.am@1.0.so|d5e66f2657ee00a277f96e19454ad6c02720b7c2
 system_ext/lib64/vendor.qti.hardware.radio.ims@1.0.so|4a1519a253ec2f1dab6c24e2c303961b077d771c
@@ -1057,6 +1060,7 @@ vendor/lib/libqmi_csi.so|90930481c581a6b319bd87b6799b8e0ee882e52c
 vendor/lib/libqmi_encdec.so|e45cfc088efc2141047d304c9577f466bdb5dfbc
 vendor/lib/libqmi_legacy.so|c1d45f9d7e13dba120bf4384953039ee5b95a5b2
 vendor/lib/libqmiservices.so|52244e9d54c4d352d148d276044a4b7cc4c78bf4
+vendor/lib/vendor.qti.hardware.data.iwlan@1.0.so;MODULE_SUFFIX=_vendor;DISABLE_DEPS|c78d1c0af42a6ca1ca0598d7bbc816342f15e067
 vendor/lib64/com.qualcomm.qti.dpm.api@1.0.so|d9f1aa7f93b928f42499d613d20ccbc60f279097
 vendor/lib64/com.qualcomm.qti.imscmservice@1.0.so|6d39c1bb92cd03df1f71315fca6995ee8a1d0cd4
 vendor/lib64/com.qualcomm.qti.imscmservice@2.0.so|fa5fe282dc9a6953ba4586415cdf161ed5a040cd
@@ -1147,7 +1151,7 @@ vendor/lib64/vendor.qti.hardware.data.cne.internal.server@1.0.so|7d80cd3bda9fd34
 vendor/lib64/vendor.qti.hardware.data.connection@1.0.so|b1680808bd26a89a586f9aca8839ca9389b6503a
 vendor/lib64/vendor.qti.hardware.data.connection@1.1.so|b71ecdd47c46cae07fca43057695996e134e414b
 vendor/lib64/vendor.qti.hardware.data.dynamicdds@1.0.so|cd51703f1ff29c57e545df41592be32c43ed00c0
-vendor/lib64/vendor.qti.hardware.data.iwlan@1.0.so|463659c4b5050c1af1d100c83914fd710ca99710
+vendor/lib64/vendor.qti.hardware.data.iwlan@1.0.so;MODULE_SUFFIX=_vendor;DISABLE_DEPS|463659c4b5050c1af1d100c83914fd710ca99710
 vendor/lib64/vendor.qti.hardware.data.latency@1.0.so|72345083feb96e9ecd86d49725d4815b075c9646
 vendor/lib64/vendor.qti.hardware.data.lce@1.0.so|5932523774458c69122d797ed017a1651b40c7a6
 vendor/lib64/vendor.qti.hardware.data.qmi@1.0.so|851db5940d5e9e4330e16221be114aef14f52325
