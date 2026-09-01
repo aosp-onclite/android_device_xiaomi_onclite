@@ -35,7 +35,7 @@ cc_library_shared {
         "kona": ["-DCAPTURE_DEVICE=7"],
         default: [],
     }) + select(soong_config_variable("qtiaudio", "feature_gcov"), {
-        "true": [
+        true: [
             "--coverage",
             "-fprofile-arcs",
             "-ftest-coverage",
@@ -61,7 +61,7 @@ cc_library_shared {
     ],
 
     static_libs: select(soong_config_variable("qtiaudio", "feature_gcov"), {
-        "true": ["libprofile_rt"],
+        true: ["libprofile_rt"],
         default: [],
     }),
 }

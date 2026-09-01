@@ -13,7 +13,7 @@ cc_library_shared {
         "effect_api.c",
         "effect_util.c",
     ] + select(soong_config_variable("qtiaudio", "feature_audiosphere"), {
-        "true": ["asphere.c"],
+        true: ["asphere.c"],
         default: [],
     }),
 
@@ -34,19 +34,19 @@ cc_library_shared {
         "-Wno-format",
         "-Wno-unused-value",
     ] + select(soong_config_variable("qtiaudio", "feature_disabled_dts_eagle"), {
-        "true": [],
+        true: [],
         default: ["-DDTS_EAGLE"],
     }) + select(soong_config_variable("qtiaudio", "feature_proxy_device"), {
-        "true": ["-DAFE_PROXY_ENABLED"],
+        true: ["-DAFE_PROXY_ENABLED"],
         default: [],
     }) + select(soong_config_variable("qtiaudio", "feature_audiosphere"), {
-        "true": ["-DAUDIOSPHERE_ENABLED"],
+        true: ["-DAUDIOSPHERE_ENABLED"],
         default: [],
     }) + select(soong_config_variable("qtiaudio", "feature_instance_id"), {
-        "true": ["-DINSTANCE_ID_ENABLED"],
+        true: ["-DINSTANCE_ID_ENABLED"],
         default: [],
     }) + select(soong_config_variable("qtiaudio", "feature_gcov"), {
-        "true": [
+        true: [
             "--coverage",
             "-fprofile-arcs",
             "-ftest-coverage",
@@ -65,7 +65,7 @@ cc_library_shared {
         "libutils_headers",
         "qti_kernel_headers",
     ] + select(soong_config_variable("qtiaudio", "feature_dlkm"), {
-        "true": ["audio_kernel_headers"],
+        true: ["audio_kernel_headers"],
         default: [],
     }),
 
@@ -77,7 +77,7 @@ cc_library_shared {
     ],
 
     static_libs: select(soong_config_variable("qtiaudio", "feature_gcov"), {
-        "true": ["libprofile_rt"],
+        true: ["libprofile_rt"],
         default: [],
     }),
 }
@@ -134,7 +134,7 @@ cc_library_shared {
         "libutils_headers",
         "qti_kernel_headers",
     ] + select(soong_config_variable("qtiaudio", "feature_dlkm"), {
-        "true": ["audio_kernel_headers"],
+        true: ["audio_kernel_headers"],
         default: [],
     }),
 
