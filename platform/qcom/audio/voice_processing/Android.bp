@@ -22,7 +22,7 @@ cc_library_shared {
         "-Wno-unused-function",
         "-Wno-unused-local-typedef",
         "-Wno-unused-value",
-    ] + select(soong_config_variable("qtiaudio", "feature_gcov"), {
+    ] + select(soong_config_variable("qtiaudio_onc", "feature_gcov"), {
         true: [
             "--coverage",
             "-fprofile-arcs",
@@ -31,7 +31,7 @@ cc_library_shared {
         default: [],
     }),
 
-    cppflags: select(soong_config_variable("qtiaudio", "feature_gcov"), {
+    cppflags: select(soong_config_variable("qtiaudio_onc", "feature_gcov"), {
         true: [
             "--coverage",
             "-fprofile-arcs",
@@ -54,7 +54,7 @@ cc_library_shared {
         "liblog",
     ],
 
-    static_libs: select(soong_config_variable("qtiaudio", "feature_gcov"), {
+    static_libs: select(soong_config_variable("qtiaudio_onc", "feature_gcov"), {
         true: ["libprofile_rt"],
         default: [],
     }),

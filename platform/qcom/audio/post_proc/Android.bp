@@ -12,7 +12,7 @@ cc_library_shared {
         "reverb.c",
         "effect_api.c",
         "effect_util.c",
-    ] + select(soong_config_variable("qtiaudio", "feature_audiosphere"), {
+    ] + select(soong_config_variable("qtiaudio_onc", "feature_audiosphere"), {
         true: ["asphere.c"],
         default: [],
     }),
@@ -33,19 +33,19 @@ cc_library_shared {
         "-Wno-unused-local-typedef",
         "-Wno-format",
         "-Wno-unused-value",
-    ] + select(soong_config_variable("qtiaudio", "feature_disabled_dts_eagle"), {
+    ] + select(soong_config_variable("qtiaudio_onc", "feature_disabled_dts_eagle"), {
         true: [],
         default: ["-DDTS_EAGLE"],
-    }) + select(soong_config_variable("qtiaudio", "feature_proxy_device"), {
+    }) + select(soong_config_variable("qtiaudio_onc", "feature_proxy_device"), {
         true: ["-DAFE_PROXY_ENABLED"],
         default: [],
-    }) + select(soong_config_variable("qtiaudio", "feature_audiosphere"), {
+    }) + select(soong_config_variable("qtiaudio_onc", "feature_audiosphere"), {
         true: ["-DAUDIOSPHERE_ENABLED"],
         default: [],
-    }) + select(soong_config_variable("qtiaudio", "feature_instance_id"), {
+    }) + select(soong_config_variable("qtiaudio_onc", "feature_instance_id"), {
         true: ["-DINSTANCE_ID_ENABLED"],
         default: [],
-    }) + select(soong_config_variable("qtiaudio", "feature_gcov"), {
+    }) + select(soong_config_variable("qtiaudio_onc", "feature_gcov"), {
         true: [
             "--coverage",
             "-fprofile-arcs",
@@ -64,7 +64,7 @@ cc_library_shared {
         "libsystem_headers",
         "libutils_headers",
         "qti_kernel_headers",
-    ] + select(soong_config_variable("qtiaudio", "feature_dlkm"), {
+    ] + select(soong_config_variable("qtiaudio_onc", "feature_dlkm"), {
         true: ["audio_kernel_headers"],
         default: [],
     }),
@@ -76,7 +76,7 @@ cc_library_shared {
         "libtinyalsa",
     ],
 
-    static_libs: select(soong_config_variable("qtiaudio", "feature_gcov"), {
+    static_libs: select(soong_config_variable("qtiaudio_onc", "feature_gcov"), {
         true: ["libprofile_rt"],
         default: [],
     }),
@@ -133,7 +133,7 @@ cc_library_shared {
         "libsystem_headers",
         "libutils_headers",
         "qti_kernel_headers",
-    ] + select(soong_config_variable("qtiaudio", "feature_dlkm"), {
+    ] + select(soong_config_variable("qtiaudio_onc", "feature_dlkm"), {
         true: ["audio_kernel_headers"],
         default: [],
     }),
