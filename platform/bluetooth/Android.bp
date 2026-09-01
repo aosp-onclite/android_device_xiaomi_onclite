@@ -1,0 +1,7 @@
+cc_library_shared {
+    name: "libldacBT_bco_onc",
+    stem: "libldacBT_bco",
+    vendor: true,
+    srcs: ["stub.c"],
+    compile_multilib: "both",
+}
