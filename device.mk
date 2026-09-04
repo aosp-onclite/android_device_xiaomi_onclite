@@ -661,6 +661,9 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/permissions/telephony_system-ext_privapp-permissions-qti.xml:$(TARGET_COPY_OUT_SYSTEM_EXT)/etc/permissions/telephony_system-ext_privapp-permissions-qti.xml
 
 # Wi-Fi
+$(call soong_config_set_bool,wcnss_service,uses_qcom_wcnss_qmi,true)
+$(call soong_config_set,wcnss_service,wcnss_qmi_include_dir,$(LOCAL_PATH)/platform/wifi/include)
+
 PRODUCT_PACKAGES += \
     android.hardware.wifi-service \
     libcld80211 \

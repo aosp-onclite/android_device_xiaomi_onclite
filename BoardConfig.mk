@@ -176,7 +176,6 @@ endif
 
 # Treble
 BOARD_VNDK_VERSION := current
-PRODUCT_VENDOR_MOVE_ENABLED := true
 
 # Vendor security patch level
 VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
@@ -187,8 +186,6 @@ BOARD_HOSTAPD_PRIVATE_LIB := //hardware/qcom-caf/wlan/qcwcn:lib_driver_cmd_qcwcn
 BOARD_WLAN_DEVICE := qcwcn
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
 BOARD_WPA_SUPPLICANT_PRIVATE_LIB := //hardware/qcom-caf/wlan/qcwcn:lib_driver_cmd_qcwcn
-TARGET_USES_QCOM_WCNSS_QMI := true
-TARGET_WCNSS_QMI_INCLUDE_DIR := $(DEVICE_PATH)/platform/wifi/include
 WIFI_HAL_INTERFACE_COMBINATIONS := {{{STA}, 1}}
 WIFI_DRIVER_STATE_CTRL_PARAM := "/sys/module/wlan/parameters/fwpath"
 WIFI_DRIVER_STATE_ON := ""
