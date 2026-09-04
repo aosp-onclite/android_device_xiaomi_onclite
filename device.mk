@@ -494,6 +494,7 @@ PRODUCT_PACKAGES += \
 
 # Power
 $(call soong_config_set,qtipower,mode_ext_lib,//$(LOCAL_PATH):libpowermode-ext-onc)
+$(call soong_config_set_bool,qtipower,interaction_boost,true)
 
 PRODUCT_PACKAGES += \
     libpower.vendor \
