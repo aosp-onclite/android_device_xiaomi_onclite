@@ -22,6 +22,14 @@ cc_library_shared {
         "-Wno-unused-function",
         "-Wno-unused-local-typedef",
         "-Wno-unused-value",
+        "-Wno-macro-redefined",
+        "-Wno-unused-but-set-variable",
+        "-Wno-format",
+        "-Wno-tautological-pointer-compare",
+        "-Wno-missing-field-initializers",
+        "-Wno-implicit-float-conversion",
+        "-Wno-sign-conversion",
+        "-Wno-conversion",
     ] + select(soong_config_variable("qtiaudio_onc", "feature_gcov"), {
         true: [
             "--coverage",

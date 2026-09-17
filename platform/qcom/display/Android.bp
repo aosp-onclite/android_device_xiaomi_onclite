@@ -5,9 +5,6 @@ cc_defaults {
         "-Wconversion",
         "-Wall",
         "-Werror",
-        "-Wno-unused-variable",
-        "-Wno-unused-but-set-variable",
-        "-Wno-format",
     ] + select(soong_config_variable("qtidisplay", "headless"), {
         "true": ["-DTARGET_HEADLESS"],
         default: [],

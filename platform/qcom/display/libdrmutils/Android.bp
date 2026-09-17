@@ -1,5 +1,4 @@
 cc_library_shared {
-
     name: "libdrmutils",
     vendor: true,
     header_libs: [
@@ -16,13 +15,27 @@ cc_library_shared {
         "-Wno-unused-variable",
         "-Wno-unused-but-set-variable",
         "-Wno-format",
+        "-Wno-macro-redefined",
+        "-Wno-sign-compare",
+        "-Wno-unused-parameter",
+        "-Wno-unused-label",
+        "-Wno-gnu-designator",
+        "-Wno-typedef-redefinition",
+        "-Wno-shorten-64-to-32",
+        "-Wno-tautological-compare",
+        "-Wno-unused-function",
+        "-Wno-unused-local-typedef",
+        "-Wno-tautological-pointer-compare",
+        "-Wno-missing-field-initializers",
+        "-Wno-implicit-float-conversion",
+        "-Wno-sign-conversion",
+        "-Wno-conversion",
         "-fno-operator-names",
+        "-Wno-unused-value",
     ],
-
     srcs: [
         "drm_master.cpp",
         "drm_res_mgr.cpp",
         "drm_lib_loader.cpp",
     ],
-
 }

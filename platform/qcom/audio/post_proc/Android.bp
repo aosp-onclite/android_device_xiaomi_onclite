@@ -33,6 +33,13 @@ cc_library_shared {
         "-Wno-unused-local-typedef",
         "-Wno-format",
         "-Wno-unused-value",
+        "-Wno-macro-redefined",
+        "-Wno-unused-but-set-variable",
+        "-Wno-tautological-pointer-compare",
+        "-Wno-missing-field-initializers",
+        "-Wno-implicit-float-conversion",
+        "-Wno-sign-conversion",
+        "-Wno-conversion",
     ] + select(soong_config_variable("qtiaudio_onc", "feature_disabled_dts_eagle"), {
         true: [],
         default: ["-DDTS_EAGLE"],
@@ -107,6 +114,14 @@ cc_library_shared {
         "-Wno-unused-function",
         "-Wno-unused-local-typedef",
         "-Wno-format",
+        "-Wno-macro-redefined",
+        "-Wno-unused-but-set-variable",
+        "-Wno-tautological-pointer-compare",
+        "-Wno-missing-field-initializers",
+        "-Wno-implicit-float-conversion",
+        "-Wno-sign-conversion",
+        "-Wno-conversion",
+        "-Wno-unused-value",
     ] + select(soong_config_variable("ANDROID", "target_board_platform"), {
         any @ flag_val: [
             "-DLIB_AUDIO_HAL=/vendor/lib/hw/audio.primary." + flag_val + ".so",

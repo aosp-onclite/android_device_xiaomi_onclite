@@ -3,22 +3,36 @@ cc_library_shared {
     vendor: true,
     relative_install_path: "hw",
     defaults: ["display_defaults"],
-
     header_libs: [
         "display_headers",
         "qti_kernel_headers",
     ],
-
     cflags: [
         "-Wno-missing-field-initializers",
         "-Wno-unused-parameter",
+        "-Wno-macro-redefined",
+        "-Wno-unused-variable",
+        "-Wno-unused-but-set-variable",
+        "-Wno-format",
+        "-Wno-sign-compare",
+        "-Wno-unused-label",
+        "-Wno-gnu-designator",
+        "-Wno-typedef-redefinition",
+        "-Wno-shorten-64-to-32",
+        "-Wno-tautological-compare",
+        "-Wno-unused-function",
+        "-Wno-unused-local-typedef",
+        "-Wno-tautological-pointer-compare",
+        "-Wno-implicit-float-conversion",
+        "-Wno-sign-conversion",
+        "-Wno-conversion",
         "-fcolor-diagnostics",
         "-DLOG_TAG=\"SDM\"",
+        "-Wno-unused-value",
     ] + select(soong_config_variable("qtidisplay", "wide_color"), {
         "true": ["-DFEATURE_WIDE_COLOR"],
         default: [],
     }),
-
     shared_libs: [
         "libsdmcore",
         "libqservice",
@@ -51,7 +65,6 @@ cc_library_shared {
         "libui",
         "libgpu_tonemapper",
     ],
-
     srcs: [
         "hwc_session.cpp",
         "hwc_session_services.cpp",
