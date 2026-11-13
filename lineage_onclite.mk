@@ -11,15 +11,17 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit from onclite device
 $(call inherit-product, device/xiaomi/onclite/device.mk)
 
-# Inherit some common Lineage stuff.
+# Inherit some common Evolution X stuff.
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+WITH_GMS := false
+TARGET_ENABLE_BLUR := false
 
 # Device identifier. This must come after all inclusions.
 PRODUCT_NAME := lineage_onclite
 PRODUCT_DEVICE := onclite
-PRODUCT_BRAND := Xiaomi
+PRODUCT_BRAND := xiaomi
 PRODUCT_MODEL := Redmi 7
-PRODUCT_MANUFACTURER := Xiaomi
+PRODUCT_MANUFACTURER := xiaomi
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
     BuildDesc="onc-user 9 PKQ1.181021.001 V11.0.3.0.PFLMIXM release-keys" \
