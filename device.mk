@@ -47,6 +47,7 @@ PRODUCT_PACKAGES += \
     SystemUIResOnc \
     CarrierConfigResOnc \
     SettingsResOnc \
+    OncliteSettingsResTarget \
     SettingsProviderResOnc \
     TelephonyResOnc \
     WifiResOnc \
