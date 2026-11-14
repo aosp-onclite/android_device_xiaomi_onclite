@@ -27,3 +27,6 @@ ro.bluetooth.a2dp_offload.supported=false
 
 # eBPF
 ro.bpf.kver_override=5.15.178
+
+# Maintainer
+ro.lunaris.maintainer=YUREI
