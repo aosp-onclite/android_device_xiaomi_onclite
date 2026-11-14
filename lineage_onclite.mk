@@ -33,6 +33,10 @@ PRODUCT_MANUFACTURER := xiaomi
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
     BuildDesc="onc-user 9 PKQ1.181021.001 V11.0.3.0.PFLMIXM release-keys" \
-    BuildFingerprint=xiaomi/onc/onc:9/PKQ1.181021.001/V11.0.3.0.PFLMIXM:user/release-keys
+    BuildFingerprint=xiaomi/onc/onc:9/PKQ1.181021.001/V11.0.3.0.PFLMIXM:user/release-keys \
+    DeviceName=onc \
+    DeviceProduct=onc \
+    SystemDevice=onc \
+    SystemName=onc
 
 PRODUCT_GMS_CLIENTID_BASE := android-xiaomi
