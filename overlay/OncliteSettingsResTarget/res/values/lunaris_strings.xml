@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+     SPDX-FileCopyrightText: The LineageOS Project
+     SPDX-License-Identifier: Apache-2.0
+-->
+<resources>
+    <string name="lunaris_device_message">Redmi 7</string>
+    <string name="lunaris_processor_code_message">Snapdragon® 632</string>
+    <string name="lunaris_battery_type_message">4000 mAh</string>
+    <string name="lunaris_screen_message">HD+ IPS LCD, 60Hz</string>
+</resources>
