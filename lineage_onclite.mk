@@ -29,6 +29,9 @@ AXION_CPU_BG := 0-2
 AXION_CPU_FG := 0-7
 AXION_CPU_LIMIT_BG := 0-1
 AXION_CPU_UNLIMIT_UI := 0-7
+AXION_CPU_LIMIT_UI := 0-4
+AXION_CPU_DISPLAY := 4-7
+AXION_CPU_AUDIO := 0-3
 
 # Device identifier. This must come after all inclusions.
 PRODUCT_NAME := lineage_onclite
