@@ -13,9 +13,9 @@ $(call inherit-product, device/xiaomi/onclite/device.mk)
 
 # Inherit some common crDroid stuff.
 $(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+include vendor/lineage-priv/keys/keys.mk
 TARGET_SUPPORTS_BLUR := false
 TARGET_SUPPORTS_QUICK_TAP := false
-TARGET_FACE_UNLOCK_SUPPORTED := false
 TARGET_DISABLE_MATLOG := true
 
 # Device identifier. This must come after all inclusions.
@@ -23,7 +23,7 @@ PRODUCT_NAME := lineage_onclite
 PRODUCT_DEVICE := onclite
 PRODUCT_BRAND := xiaomi
 PRODUCT_MODEL := Redmi 7
-PRODUCT_MANUFACTURER := xiaomi
+PRODUCT_MANUFACTURER := Xiaomi
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
     BuildDesc="onc-user 9 PKQ1.181021.001 V11.0.3.0.PFLMIXM release-keys" \
